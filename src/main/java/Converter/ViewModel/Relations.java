@@ -32,6 +32,11 @@ public enum Relations {
 
     @Override
     public String toString() {
+
+        if(this == Relations.PrimaryKey){
+            return "PRIMARY KEY";
+        }
+
         return super.toString();
     }
 }

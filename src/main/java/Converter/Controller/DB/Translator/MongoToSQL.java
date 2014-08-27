@@ -1,5 +1,7 @@
 package Converter.Controller.DB.Translator;
 
+import Converter.ViewModel.LongString;
+import Converter.ViewModel.ShortString;
 import Converter.ViewModel.SqlFieldType;
 import org.bson.types.ObjectId;
 
@@ -29,34 +31,15 @@ public class MongoToSQL {
                 sqlType = resolveTypeDouble(sqlType);
             } else if (type == String.class) {
                 sqlType = resolveTypeString(sqlType);
-            } else if (type == ObjectId.class) {
-                sqlType = resolveTypeObjectID(sqlType);
+            } else if (type == ShortString.class || type == ObjectId.class) {
+                sqlType = resolveTypeShortString(sqlType);
+            } else if (type == LongString.class) {
+                sqlType = resolveTypeLongString(sqlType);
             } else if (type == Date.class) {
                 sqlType = resolveTypeDate(sqlType);
-            }else if (type == Boolean.class) {
+            } else if (type == Boolean.class) {
                 sqlType = resolveTypeBoolen(sqlType);
             }
-
-            /*else if(type instanceof DateTime){
-
-            }else if(){
-
-            }else if(){
-
-            }else if(){
-
-            }
-*/
-           /* if(type instanceof Integer){
-                sqlType = resolveTypeInteger(sqlType);
-            } else if(type instanceof Long){
-
-                if(sqlType == null){
-                    sqlType = SqlFieldType.Intager;
-                }
-            }
-*/
-
         }
 
         return sqlType;
@@ -74,7 +57,7 @@ public class MongoToSQL {
         if (type == null) {
             return SqlFieldType.DateTime;
         }
-            return SqlFieldType.Text;
+        return SqlFieldType.Text;
 
     }
 
@@ -113,13 +96,15 @@ public class MongoToSQL {
         return type;
     }
 
-    private static SqlFieldType resolveTypeObjectID(SqlFieldType type) {
+    private static SqlFieldType resolveTypeString(SqlFieldType type) {
 
-        // TODO: Sprawdzic czy long nie jest za dlugi
-        if (type == null || type == SqlFieldType.Intager || type == SqlFieldType.LongIntager) {
-            return SqlFieldType.UUID;
+
+        if (type == null) {
+
+            return SqlFieldType.Text;
+
         } else if (type == SqlFieldType.Binary) {
-
+//!
         } else {
             //TODO: nowe pole jesli bardzo sprzeczne.
 
@@ -129,12 +114,36 @@ public class MongoToSQL {
         return type;
     }
 
-    private static SqlFieldType resolveTypeString(SqlFieldType type) {
+    private static SqlFieldType resolveTypeShortString(SqlFieldType type) {
+
+        if (type == null) {
+
+        return SqlFieldType.VarcharShort;
+
+        } else if (type == SqlFieldType.Binary) {
+//!
+        } else if(type == SqlFieldType.Text) {
+            //TODO: nowe pole jesli bardzo sprzeczne.
+
+            return SqlFieldType.Text;
+        } else if(type == SqlFieldType.VarcharLong) {
+            return SqlFieldType.VarcharLong;
+        }
+
+
+        return type;
+    }
+
+    private static SqlFieldType resolveTypeLongString(SqlFieldType type) {
 
         // TODO: Sprawdzic czy long nie jest za dlugi
-        if (type == SqlFieldType.Binary) {
+        if (type == null) {
+
+            return SqlFieldType.VarcharLong;
+
+        } else if (type == SqlFieldType.Binary) {
 //!
-        } else {
+        } else if(type == SqlFieldType.Text) {
             //TODO: nowe pole jesli bardzo sprzeczne.
 
             return SqlFieldType.Text;

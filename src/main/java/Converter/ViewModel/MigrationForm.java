@@ -6,13 +6,13 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.UnknownHostException;
-import java.util.*;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.Vector;
 
 /**
  * Created by szef on 2014-05-16.
@@ -21,16 +21,14 @@ public class MigrationForm extends JFrame {
     private JTabbedPane tabbedPane1;
     private JPanel panel1;
     private JList dbList;
-    private JList entitiList;
     private JButton loadButton;
     private JButton reviewEntity;
-//    private JList fieldList;
-    private JList typeList;
-    private JLabel types;
-    private JTable fieldTable;
+    private JTable fieldTableLeft;
+    private JList entitiListRight;
+    private JList entitiListLeft;
+    private JTable fieldTableRight;
 
     private NoSQLDataBaseOperations noSqlOperaions;
-    private ListModel<String> entityListModel;
 
 
     public MigrationForm(NoSQLDataBaseOperations operations) throws HeadlessException {
@@ -59,7 +57,7 @@ public class MigrationForm extends JFrame {
         columnNames.addElement("Field SQL Type");
         columnNames.addElement("SQL Relations");
 
-        for(List<String> list:source){
+        for (List<String> list : source) {
             row = new Vector<String>();
             row.addElement(list.get(0));
             row.addElement(list.get(1));
@@ -68,12 +66,7 @@ public class MigrationForm extends JFrame {
         }
 
 
-
-
-
-
-
-        DefaultTableModel model = new DefaultTableModel(data,columnNames);
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
         table.setModel(model);
     }
 
@@ -95,36 +88,54 @@ public class MigrationForm extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    populateList(entitiList, noSqlOperaions.loadDataBase((String) dbList.getSelectedValue()));
+                    populateList(entitiListLeft, noSqlOperaions.loadDataBase((String) dbList.getSelectedValue()));
                 } catch (UnknownHostException e1) {
+                    e1.printStackTrace();
+                } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
             }
         });
 
-        entitiList.addListSelectionListener(new ListSelectionListener() {
+
+        loadButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    populateList(entitiListRight, noSqlOperaions.loadDataBase((String) dbList.getSelectedValue()));
+                } catch (UnknownHostException e1) {
+                    e1.printStackTrace();
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+
+        entitiListLeft.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
 
                 try {
-                    populateTable(fieldTable, noSqlOperaions.showFields(dbList.getSelectedValue().toString(), entitiList.getSelectedValue().toString()));
+                    populateTable(fieldTableLeft, noSqlOperaions.showFields(dbList.getSelectedValue().toString(), entitiListLeft.getSelectedValue().toString()));
                 } catch (UnknownHostException e1) {
                     e1.printStackTrace();
                 }
-
-
             }
 
         });
 
-/*        fieldList.addListSelectionListener(new ListSelectionListener() {
+        entitiListRight.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
 
-                    populateList(typeList, noSqlOperaions.showTypes(dbList.getSelectedValue().toString(), entitiList.getSelectedValue().toString()));
+                try {
+                    populateTable(fieldTableRight, noSqlOperaions.showFields(dbList.getSelectedValue().toString(), entitiListRight.getSelectedValue().toString()));
+                } catch (UnknownHostException e1) {
+                    e1.printStackTrace();
+                }
             }
 
-        });*/
+        });
 
         reviewEntity.addActionListener(new ActionListener() {
             @Override

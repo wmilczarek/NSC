@@ -1,20 +1,18 @@
 package Converter.ViewModel;
 
-/**
- * Created by szef on 2014-08-15.
- */
+
 public enum SqlFieldType {
 
     Intager,
     LongIntager,
     DoublePrecision,
-    Varchar,
+    VarcharShort,
+    VarcharLong,
     DateTime,
     Text,
     UUID,
     Bool,
     Binary;
-
 
 
     SqlFieldType() {
@@ -24,21 +22,29 @@ public enum SqlFieldType {
     @Override
     public String toString() {
 
-        if(this == SqlFieldType.Text){
-            return "TEXT!!!";
+        if (this == SqlFieldType.Text) {
+            return "TEXT";
+        } else if (this == SqlFieldType.Intager) {
+            return "INT";
+        } else if (this == SqlFieldType.LongIntager) {
+            return "BIGINT";
+        } else if (this == SqlFieldType.LongIntager) {
+            return "BIGINT";
+        } else if (this == SqlFieldType.DoublePrecision) {
+            return "DOUBLE";
+        } else if (this == SqlFieldType.Bool) {
+            return "BOOL";
+        } else if (this == SqlFieldType.DateTime) {
+            return "DATETIME";
+        } else if (this == SqlFieldType.VarcharShort) {
+            return "VARCHAR(24)";
+        } else if (this == SqlFieldType.VarcharLong) {
+            return "VARCHAR(120)";
         }
+
 
         return super.toString();
     }
 
-    public static SqlFieldType resolveThis(SqlFieldType sqlType){
 
-        if(sqlType == null){
-            sqlType = SqlFieldType.Intager;
-        } if( sqlType == sqlType.LongIntager){
-
-        }
-
-        return null;
-    }
 }

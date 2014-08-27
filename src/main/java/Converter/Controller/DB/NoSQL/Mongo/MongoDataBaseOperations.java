@@ -6,38 +6,34 @@ import Converter.ViewModel.*;
 import com.mongodb.*;
 
 import java.net.UnknownHostException;
-import java.util.*;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import static Converter.Controller.DB.Relational.Operations.RelationalDataBaseOperations.createEntitiesSchemaFromMongo;
+import static Converter.Controller.DB.Relational.Operations.RelationalDataBaseOperations.createSQLInsert;
 
 
-public class MongoDataBaseOperations extends NoSQLDataBaseOperations{
+public class MongoDataBaseOperations extends NoSQLDataBaseOperations {
 
     private static final MongoDataBaseOperations ourInstance = new MongoDataBaseOperations();
+    private MongoConnector mongoConnector;
+    private MongoDataBase mongoData;
+
+    private MongoDataBaseOperations() {
+    }
 
     public static MongoDataBaseOperations getInstance() {
         return ourInstance;
     }
 
     @Override
-    public NoSQLTypes getNoSqlType(){
+    public NoSQLTypes getNoSqlType() {
         return NoSQLTypes.MongoDB;
     }
 
-    private MongoConnector mongoConnector;
-
-    private MongoDataBase mongoData;
-
-    private MongoEntity mongoTempEntity;
-
-    private Set<Set<BasicDBObject>> subDocuments = new HashSet<Set<BasicDBObject>>();
-
-    private Set<Set<BasicDBList>> dbList = new HashSet<Set<BasicDBList>>();
-
-    private MongoDataBaseOperations() {}
-
-
     @Override
-    public List<String> GetDataBaseNames()
-    {
+    public List<String> GetDataBaseNames() {
         return mongoConnector.getInstance().getMongoClient(getNoSqlType()).getDatabaseNames();
 
     }
@@ -47,62 +43,106 @@ public class MongoDataBaseOperations extends NoSQLDataBaseOperations{
     // 3: dokonac resolvowania !!!!
 
     @Override
-    public List<String> loadDataBase(String dbName) throws UnknownHostException {
+    public List<String> loadDataBase(String dbName) throws UnknownHostException, SQLException {
         //Set<String> colls = mongoConnector.db.getCollectionNames();
 
         DB dataBase = mongoConnector.getInstance().getDB(dbName);
         List<String> list = new ArrayList<String>();
-        list.addAll(dataBase.getCollectionNames());
+
 
         //Load to memory DataBase
         loadIntoMemory(dbName);
-       // TranslateFieldsOfAllEntieries(mongoData);
-        FindRelations();
-        
 
-   /*     try {
-            //createEntitiesFromMongo(mongoData);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }*/
+        resolveArraySchemas();
+
+        translateFieldsOfAllEnteties();
+
+        findRelationAndSetRelations();
+
+        for (MongoEntitySchema name : mongoData.getEntitiesSchema()) {
+            list.add(name.getEntityName());
+        }
+
+        createEntitiesSchemaFromMongo(mongoData);
+        createSQLInsert(mongoData);
 
         return list;
     }
 
-    private void translateFieldsOfAllEntieries(MongoDataBase mongoDataBase) {
+    private void translateFieldsOfAllEnteties() {
 
-        for(MongoEntity mongoEntity:mongoDataBase.getEntities()){
+        for (MongoEntitySchema mongoEntitySchema : mongoData.getEntitiesSchema()) {
 
-            for (MongoField field:mongoEntity.getEntityFields().keySet()){
+            for (MongoFieldSchema mongoFieldSchema : mongoEntitySchema.getEntityFields()) {
 
-                Map<MongoField, SqlFieldType> test = mongoEntity.getEntityFields();
-
-                test.put(field, MongoToSQL.mongoToSqlFieldConversion(field.getMongoType()));
-
-                mongoEntity.setEntityFields(test);
+                mongoFieldSchema.setSqlType(MongoToSQL.mongoToSqlFieldConversion(mongoFieldSchema.getTypesFromMongoApi()));
+                //mongoEntitySchema.appendEntityFields(mongoFieldSchema);
             }
 
+           // mongoData.appendIfExistsEntitySchema(mongoEntitySchema);
+
+        }
+
+        //TODO: translate fields and create
+    }
+
+    private void resolveArraySchemas() {
+
+        for (MongoArraySchema mongoArraySchema : mongoData.getArraySchema()) {
+
+            if (mongoData.findEntity(mongoArraySchema.getArrayName().replace("_id", "")) == null) {
+                mongoData.importSchemaFromArray(mongoArraySchema);
+            } else {
+
+                mongoData.createInstersectionEntitie(mongoArraySchema);
+            }
+        }
+        //TODO: arra_id -> jako relacja, arra -> jako osobna encja.
+    }
+
+    private void findRelationAndSetRelations() {
+
+        // Dla każdego meta schematu
+        for (MongoEntitySchema mongoEntitySchema : mongoData.getEntitiesSchema()) {
+
+            // Dla każdego potencjalnego klucza obcego
+            for (MongoFieldSchema schemaField : mongoEntitySchema.getBindableFields()) {
+
+                // Sprawdz czy wpisuje się w konwencje
+                if (schemaField.getFieldName().contains("_id")) {
+                    //Sprawdz czy istnieje encja w relacji
+                    //TODO:raportowanie bledow
+                    String inRelationEntity = schemaField.getFieldName().replace("_id", "");
+                    if (mongoData.checkIfEntityExists(inRelationEntity)) {
+                        //Przypisz wlasciowsci relacj, pole klucza, typ relacji
+                        //TODO:co jesli nie ma klcza?
+                        Relations relation = Relations.ForeginKey;
+                        relation.setInRealtaionField(inRelationEntity);
+                        schemaField.setRelations(relation);
+                        mongoData.appendEntitySchema(mongoEntitySchema.getEntityName(), schemaField);
+
+                        //Klucze powinny miec synchronizowane typy
+                        schemaField.setMongoType(mongoData.findEntity(inRelationEntity).findCreateField("_id").getMongoType());
+                        mongoData.findEntity(inRelationEntity).findCreateField("_id").addMongoType(schemaField.getMongoType());
+
+                    }
+
+                }
+            }
+
+
         }
 
     }
 
-    private void FindRelations() {
-    }
-
-    public List<MongoEntity> ResolveGetEntitesWithFieldsObjects(String dbName) throws UnknownHostException {
+    public List<MongoEntitySchema> resolveGetEntitesWithFieldsObjects(String dbName) throws UnknownHostException {
         DB dataBase = mongoConnector.getInstance().getDB(dbName);
-        List<MongoEntity> list = new ArrayList<MongoEntity>();
 
-        MongoEntity entity;
-        for(String name:dataBase.getCollectionNames()){
-
-            entity = new MongoEntity();
-            entity.setEntityName(name);
-            entity.setEntityFields(ResolveAndGetFieldObjects(dbName, name));
-            list.add(entity);
+        for (String name : dataBase.getCollectionNames()) {
+            getObjectsDataAndCreateSchema(dbName, name);
         }
 
-        return list;
+        return null;
     }
 
     // znajdz wszystkie TYPY DANEGO POLA...
@@ -111,23 +151,23 @@ public class MongoDataBaseOperations extends NoSQLDataBaseOperations{
     @Override
     public List<List<String>> showFields(String dbName, String entityName) throws UnknownHostException {
 
-        if(dbName == null || dbName.equals("") || entityName == null || entityName.equals("")){
+        if (dbName == null || dbName.equals("") || entityName == null || entityName.equals("")) {
             return null;
         }
 
-        for(MongoEntity ent:mongoData.getEntities()){
+        for (MongoEntitySchema ent : mongoData.getEntitiesSchema()) {
 
-            if(ent.getEntityName().equals(entityName)){
+            if (ent.getEntityName().equals(entityName)) {
 
                 List<List<String>> tableData = new ArrayList<List<String>>();
                 List<String> row;
 
-                for(Map.Entry<MongoField,SqlFieldType> field:ent.getEntityFields().entrySet())
-                {
+                for (MongoFieldSchema field : ent.getEntityFields()) {
                     row = new ArrayList<String>();
-                    row.add(field.getKey().getFieldName());
-                    row.add(field.getValue().toString());
-                    row.add(field.getKey().getRelations().toString());
+                    row.add(field.getFieldName());
+                    row.add("tutaj no sql type");
+                    //TODO: null pointer exception
+                    row.add(field.getRelations().toString());
                     tableData.add(row);
                 }
                 return tableData;
@@ -137,107 +177,175 @@ public class MongoDataBaseOperations extends NoSQLDataBaseOperations{
         return null;
     }
 
-    public List<String> showTypes(String entityName, String fieldName){
-        return null;
-    }
+    // Iterowanie po Kolekcjach
+    public void getObjectsDataAndCreateSchema(String dbName, String entityName) throws UnknownHostException {
 
-    public Map<MongoField,SqlFieldType> ResolveAndGetFieldObjects(String dbName, String EntityName) throws UnknownHostException {
-
-        DB dataBase = mongoConnector.getInstance().getDB(dbName);
-        DBCollection targetCollection = dataBase.getCollection(EntityName);
-
-        String map = "function() { for (var key in this) { emit(key, null); }}";
-        String reduce = "function(key, stuff) { return null; }";
-        MapReduceCommand cmd = new MapReduceCommand(targetCollection, map, reduce, null, MapReduceCommand.OutputType.INLINE, null);
-        MapReduceOutput out = targetCollection.mapReduce(cmd);
-
-        Iterable<DBObject> results = out.results();
-        Map<MongoField,SqlFieldType> fieldsDictionary = new HashMap<MongoField, SqlFieldType>();
-
-        for(DBObject obj:results){
-
-            // TODO: determin type
-            MongoField field = new MongoField();
-            field.setFieldName((String)obj.get("_id"));
-
-            if(field.getFieldName().equals("_id")){
-                field.setRelations(Relations.PrimaryKey);
-            } else {
-                field.setRelations(Relations.None);
-            }
-
-            // Dla każdego pola przeprowadź badanie
-            field.setMongoType(ResolveAndGetFieldTypes(dbName, EntityName, (String) obj.get("_id")));
-            field.setValue(obj.get("value"));
-            fieldsDictionary.put(field,MongoToSQL.mongoToSqlFieldConversion(field.getMongoType()));
-            //BasicDBList, BasicDbObject
+        if (entityName.equals("system.indexes")) {
+            return;
         }
 
+        DB dataBase = mongoConnector.getInstance().getDB(dbName);
+        DBCursor result = dataBase.getCollection(entityName).find();
+        MongoEntitySchema entity = mongoData.getEntitySchemaToEdit(entityName);
+        MongoEntityData dataEntity = mongoData.getEntityDataToEdit(entityName);
 
-        return fieldsDictionary;
+        // List<MongoRowData> mongoRowData = new ArrayList<MongoRowData>();
+
+        for (DBObject current : result) {
+
+            MongoRowData row = new MongoRowData();
+
+            for (String fieldName : current.keySet()) {
+
+                getFieldPropertiesToMemory(dbName, entityName, fieldName, current, row);
+            }
+            //zapis danych
+            mongoData.appendEntityData(entityName, row);
+        }
     }
 
-    // znajdz wszystkie TYPY DANEGO POLA...
-    public Set<Class<?>> ResolveAndGetFieldTypes(String dbName, String EntityName, String fieldName) throws UnknownHostException {
+    private boolean checkIfFieldIsEntityTypeIsArray(Object fieldType) {
 
-        DB dataBase = mongoConnector.getInstance().getDB(dbName);
-        DBCollection targetCollection = dataBase.getCollection(EntityName);
-
-        DBObject query = new BasicDBObject(fieldName, new BasicDBObject("$exists", true));
-        DBCursor results = targetCollection.find(query);
-        Set<Class<?>> type = new HashSet<Class<?>>();
-        Set<BasicDBObject> subDocumentsInOneEntity = new HashSet<BasicDBObject>();
-        Set<BasicDBList> documentListInOneEntity = new HashSet<BasicDBList>();
-
-        for(DBObject obj:results){
-
-            if(obj.get(fieldName).getClass() == BasicDBList.class ){
-
-                // pobranie od dokumentu podrzędnego ID
-                type.add(obj.get("_id").getClass());
-                //createEntityFromSubDocument()
-
-
-                //documentListInOneEntity.add((BasicDBList) obj);
-                //createSemiEntity(dbName, EntityName, fieldName, obj)
-
-            }  if(obj.get(fieldName).getClass() == BasicDBObject.class ){
-                //subDocumentsInOneEntity.add((BasicDBObject) obj);
-
-                //trzeba stworzyc encje z ID.
-
-            } else {
-                type.add(obj.get(fieldName).getClass());
-            }
+        if (fieldType.getClass() == BasicDBList.class) {
+            return true;
         }
 
-        subDocuments.add(subDocumentsInOneEntity);
-        return type;
+        return false;
     }
 
-    private void createEntityFromSubDocument(String dbName, String entityName, String fieldName, DBObject obj) {
+    private boolean checkIfFieldIsEntityTypeIsObject(Object fieldType) {
 
-        //Sprawdzenie czy encja juz istnieje.
-        MongoEntity entity = mongoData.getEntityToEdit(fieldName);
+        if (fieldType.getClass() == BasicDBObject.class) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private Relations initialPrimaryKeyRelationChecker(MongoFieldSchema field) {
+
+        if (field.getFieldName().equals("_id")) {
+
+            return Relations.PrimaryKey;
+        } else {
+
+            return Relations.None;
+        }
+    }
+
+    // rekurencja
+    private void createEntityFromSubDocument(String dbName, String fieldName, DBObject current) {
+
+        MongoRowData row = new MongoRowData();
+
+        // CZY JEST WYMAGANE GENEROWANIE AUTO KLUCZA
+        if (mongoData.getEntitySchemaToEdit(fieldName).getAutoPrimaryKey() > 0) {
+            MongoEntitySchema entity = mongoData.getEntitySchemaToEdit(fieldName);
+            MongoFieldSchema field = entity.findCreateField("_id");
+            field.setTypesFromMongoApi(Long.class);
+            field.setRelations(initialPrimaryKeyRelationChecker(field));
+            //nazwa pola jest tutaj nazwa encji
+            mongoData.appendEntitySchema(fieldName, field);
+
+            row.setFieldValue("_id", mongoData.getEntitySchemaToEdit(fieldName).getAutoPrimaryKey());
+
+        }
 
 
         //Sprawdzanie po polach nowego obiektu
-        for(String objFieldName:obj.keySet()){
-            MongoField fieldInEntity = entity.findField(fieldName);
+        for (String objFieldName : current.keySet()) {
+            row = getFieldPropertiesToMemory(dbName, fieldName, objFieldName, current, row);
+        }
+        //ZAPISZ WIERSZA DANYCH
+        mongoData.appendEntityData(fieldName, row);
+    }
 
-            if (fieldInEntity != null){
-                //Dodanie nowego typu do istniejacego setu.
-                fieldInEntity.getMongoType().add(obj.get(objFieldName).getClass());
+    private MongoRowData getFieldPropertiesToMemory(String dbName, String entityName, String fieldName, DBObject current, MongoRowData row) {
+
+        MongoEntitySchema entity = mongoData.getEntitySchemaToEdit(entityName);
+        // Szukanie/tworzenie nowego fielda o podanej nazwie
+
+        MongoFieldSchema field = entity.findCreateField(fieldName);
+
+        if (checkIfFieldIsEntityTypeIsObject(current.get(fieldName))) {
+
+            handleObjectField(dbName, entityName, fieldName, current, row, field);
+            field.setTypesFromMongoApi(DBObject.class);
+
+        } else if (checkIfFieldIsEntityTypeIsArray(current.get(fieldName))) {
+            handleArrayField(fieldName, entityName, (BasicDBList) current.get(fieldName), current.get("_id"));
+            field.setTypesFromMongoApi(BasicDBList.class);
+            field.setRelations(Relations.None);
+            return null;
+        } else {
+            //dodanie danych
+            row.setFieldValue(fieldName, current.get(fieldName));
+            // Dodanie typu
+            field.setTypesFromMongoApi(current.get(fieldName));
+            // Dodanie relacji
+            field.setRelations(initialPrimaryKeyRelationChecker(field));
+        }
+
+        //Podamiana pola na nowszą wersje.
+        mongoData.appendEntitySchema(entityName, field);
+
+        return row;
+
+    }
+
+    private void handleArrayField(String fieldName, String fatherEntity, BasicDBList current, Object fatherId) {
 
 
-                //TODO czy?!?!?!
-            }
+        MongoArraySchema array = mongoData.getArraySchema(fieldName);
+        array.setFatherName(fatherEntity);
+        array.setValueType(current.get(0));
+        array.setFatherIdValueType(fatherId);
+        mongoData.appendIfNotExistsArraySchema(array);
+
+
+        for (Object value : current) {
+            MongoRowData arrayRow = new MongoRowData();
+            arrayRow.setFieldValue("value", value);
+            arrayRow.setFieldValue(fatherEntity + "_id", fatherId);
+            mongoData.appendArrayRowData(fieldName, arrayRow);
+        }
+
+
+        //createEntityFromSubDocument(dbName, fieldName, (DBObject) current.get(fieldName));
+
+
+    }
+
+    private void handleObjectField(String dbName, String entityName, String fieldName, DBObject current, MongoRowData row, MongoFieldSchema field) {
+
+        DBObject children = ((DBObject) current.get(fieldName));
+
+        if (children.get("_id") == null) {
+            field.setTypesFromMongoApi(Long.class);
+            MongoEntitySchema subEntity = mongoData.getEntitySchemaToEdit(fieldName);
+            mongoData.appendIfNotExistsEntitySchema(subEntity);
+            row.setFieldValue(fieldName + "_id", subEntity.incrementAutoPrimaryKey());
+
+        } else {
+            //get sub document
+            DBObject subDocumentIdField = (DBObject) children.get("_id");
+            // Zapisz typ ID pod dokumentu.
+            field.setTypesFromMongoApi(subDocumentIdField);
+            // Zapisz wartość PK pod dokumentu do pola tej encji (FK).
+            row.setFieldValue(fieldName, subDocumentIdField.get("_id"));
+            // Ustaw relacje.
 
         }
+        field.setFieldName(fieldName + "_id");
+        Relations foreginRelations = Relations.ForeginKey;
+        foreginRelations.setInRelationEntity(entityName);
+        field.setRelations(Relations.ForeginKey);
+
+        createEntityFromSubDocument(dbName, fieldName, (DBObject) current.get(fieldName));
     }
 
     @Override
-    public void loadIntoMemory(String dbName){
+    public void loadIntoMemory(String dbName) {
         mongoData = new MongoDataBase();
         try {
             DB dataBase = mongoConnector.getInstance().getDB(dbName);
@@ -247,80 +355,9 @@ public class MongoDataBaseOperations extends NoSQLDataBaseOperations{
 
         mongoData.setDBname(dbName);
         try {
-            mongoData.setEntities(ResolveGetEntitesWithFieldsObjects(dbName));
+            this.resolveGetEntitesWithFieldsObjects(dbName);
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
-
-
     }
-
-/*    private void createDependencies(){
-
-        List<MongoEntity> entityList = mongoData.getEntities();
-        boolean realtionFound;
-        // Get All entities
-        for(MongoEntity entity:entityList){
-
-            // Get All Bindable Fields of Current Entity
-            for(MongoField field:entity.getBindableFields()){
-
-                // Get rest o Entites to, means exclude current entitie
-                for(MongoEntity restOfEntities:mongoData.exludeEntity(entity.getEntityName())){
-
-                    //Compare Filed searching for FK
-                    for(MongoField fieldToCompare:entity.getBindableFields()){
-
-                        if(field.IsInRelation(fieldToCompare)){
-                            realtionFound = true;
-                            break;
-                        }
-
-                    }
-
-                    if(realtionFound){
-                        realtionFound = false;
-                        break;
-                    }
-                }
-
-            }
-        }
-
-
-    }*/
-
-/*    private void findAndCreateRelations(){
-
-        List<MongoEntity> entityList = mongoData.getEntities();
-        boolean realtionFound;
-        // Get All entities
-        for(MongoEntity entity:entityList){
-
-            // Get All Bindable Fields of Current Entity
-            for(MongoField field:entity.getBindableFields()){
-
-                if(field.getFieldName().contains("_id"))
-
-
-                // Get rest o Entites to, means exclude current entitie
-                for(MongoEntity restOfEntities:mongoData.exludeEntity(entity.getEntityName())){
-
-                    //Compare Filed searching for FK
-                    for(MongoField fieldToCompare:entity.getBindableFields()){
-
-                        if(field.IsInRelation(fieldToCompare)){
-                            realtionFound = true;
-                            break;
-                        }
-
-                    }
-
-                }
-
-            }
-        }
-    }*/
 }
-
-
