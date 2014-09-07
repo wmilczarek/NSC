@@ -1,6 +1,6 @@
 package Converter.ViewModel;
 
-import Converter.Controller.DB.NoSQL.NoSQLDataBaseOperations;
+import Converter.ModelController.Controller.DB.NoSQL.NoSQLDataBaseOperations;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -144,30 +144,6 @@ public class MigrationForm extends JFrame {
                 noSqlOperaions.loadIntoMemory(dbList.getSelectedValue().toString());
             }
         });
-
-
-
-
-
-
-/*
-        loadButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    noSqlOperaions.ResolveAndGetEntites((String) dbList.getSelectedValue());
-                } catch (UnknownHostException e1) {
-                    e1.printStackTrace();
-                }
-            }
-        });
-*/
-
-    }
-
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
     }
 }
 

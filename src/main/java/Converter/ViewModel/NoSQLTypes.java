@@ -1,7 +1,9 @@
 package Converter.ViewModel;
 
-import Converter.Controller.DB.NoSQL.Mongo.MongoDataBaseOperations;
-import Converter.Controller.DB.NoSQL.NoSQLDataBaseOperations;
+import Converter.ModelController.Controller.DB.NoSQL.Cauch.CauchConnector;
+import Converter.ModelController.Controller.DB.NoSQL.Cauch.CauchDataBaseOperations;
+import Converter.ModelController.Controller.DB.NoSQL.Mongo.MongoDataBaseOperations;
+import Converter.ModelController.Controller.DB.NoSQL.NoSQLDataBaseOperations;
 
 /**
  * Created by szef on 2014-05-15.
@@ -9,8 +11,7 @@ import Converter.Controller.DB.NoSQL.NoSQLDataBaseOperations;
 public enum NoSQLTypes {
 
     MongoDB("MongoDB", "27017", MongoDataBaseOperations.getInstance()),
-    Cassandra("Cassandra", "7199", null),
-    Neo4J("Neo4J", "0000", null);
+    Cauch("Cauch", "8091", CauchDataBaseOperations.getInstance());
 
     public String name;
     public String defPort;

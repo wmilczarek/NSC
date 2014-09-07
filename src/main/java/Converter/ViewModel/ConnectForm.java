@@ -27,7 +27,7 @@ public class ConnectForm extends JFrame {
     public void InitDbCombo() {
 
         DbCombo.addItem(NoSQLTypes.MongoDB);
-        DbCombo.addItem(NoSQLTypes.Neo4J);
+        DbCombo.addItem(NoSQLTypes.Cauch);
         DbCombo.addItemListener(new ItemChangeListener());
         textFieldAdress.setText("localhost");
         textFieldPort.setText(NoSQLTypes.MongoDB.defPort);

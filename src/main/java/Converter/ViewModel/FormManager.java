@@ -1,6 +1,6 @@
 package Converter.ViewModel;
 
-import Converter.Controller.DB.NoSQL.NoSQLDataBaseOperations;
+import Converter.ModelController.Controller.DB.NoSQL.NoSQLDataBaseOperations;
 
 import javax.swing.*;
 
