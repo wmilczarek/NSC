@@ -1,0 +1,217 @@
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 >> Host: 127.0.0.1:5984
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 >> Connection: Keep-Alive
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 >> User-Agent: Apache-HttpClient/4.3.3 (java 1.5)
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 >> Accept-Encoding: gzip,deflate
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 >> Authorization: Basic YWRtaW46YWRtaW4=
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 >> "GET /objarray/_design/arrayobjtype/_view/arrayobjtype HTTP/1.1[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 >> "Accept: application/json[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 >> "Host: 127.0.0.1:5984[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 >> "User-Agent: Apache-HttpClient/4.3.3 (java 1.5)[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 >> "Authorization: Basic YWRtaW46YWRtaW4=[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 >> "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "Transfer-Encoding: chunked[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "Server: CouchDB/1.6.1 (Erlang OTP/R16B02)[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "ETag: "6L96SHII1ZEL4JY7D39CMAF9O"[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "Date: Wed, 01 Oct 2014 17:33:38 GMT[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "Content-Type: application/json[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "Cache-Control: must-revalidate[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 << HTTP/1.1 200 OK
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 << Transfer-Encoding: chunked
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 << Server: CouchDB/1.6.1 (Erlang OTP/R16B02)
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 << ETag: "6L96SHII1ZEL4JY7D39CMAF9O"
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 << Date: Wed, 01 Oct 2014 17:33:38 GMT
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 << Content-Type: application/json
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 << Cache-Control: must-revalidate
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Connection can be kept alive indefinitely
+DEBUG AWT-EventQueue-0 org.apache.http.impl.auth.HttpAuthenticator - Authentication succeeded
+INFO AWT-EventQueue-0 org.lightcouch.CouchDbClient - < Status: 200
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "25[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "{"total_rows":1,"offset":0,"rows":[[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "20c[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "{"id":"2b50927dc64dc1be0ed8ed136b000088","key":"typeONE","value":{"_id":"2b50927dc64dc1be0ed8ed136b000088","_rev":"1-01ab522e983b5ca9113059e171f944b8","title":"50 Tips and Tricks for MongoDB Developer","author":"Kristina Chodorow","published_date":"2011-05-07T01:26:20.201Z","pages":"1099511600000","language":"English","type":"typeONE","publisher":[{"name":"OReilly Media","founded":1980,"location":"CA"},{"name":"dupenSrupen","founded":66666,"location":"aaa"}],"_deleted_conflicts":["2-eec205a9d413992850a6e32678485900"]}}[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "4[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "]}[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "1[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "[\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "0[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.PoolingHttpClientConnectionManager - Connection [id: 0][route: {}->http://127.0.0.1:5984] can be kept alive indefinitely
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.PoolingHttpClientConnectionManager - Connection released: [id: 0][route: {}->http://127.0.0.1:5984][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - _deleted_conflicts_value VARCHAR(120)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - typeONE_id VARCHAR(120)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - name VARCHAR(24)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - founded INT
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - location VARCHAR(24)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - typeONE_id VARCHAR(120)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - pages VARCHAR(24)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - NotRelationalField
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - author VARCHAR(24)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - _rev VARCHAR(120)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - NotRelationalField
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - language VARCHAR(24)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - _id VARCHAR(120)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - title VARCHAR(120)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - published_date VARCHAR(24)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - end creating schema script
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - publisherset reference to table typeONE_id
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - End reference script generation
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - name dupenSrupen
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - founded 66666
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - location aaa
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - typeONE_id 2b50927dc64dc1be0ed8ed136b000088
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - name OReilly Media
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - founded 1980
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - location CA
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - typeONE_id 2b50927dc64dc1be0ed8ed136b000088
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - pages 1099511600000
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - author Kristina Chodorow
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - _rev 1-01ab522e983b5ca9113059e171f944b8
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - language English
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - _id 2b50927dc64dc1be0ed8ed136b000088
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - title 50 Tips and Tricks for MongoDB Developer
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - published_date 2011-05-07T01:26:20.201Z
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - End insert script generation
+INFO AWT-EventQueue-0 org.lightcouch.CouchDbClient - > GET/objarray
+DEBUG AWT-EventQueue-0 org.apache.http.client.protocol.RequestAddCookies - CookieSpec selected: best-match
+DEBUG AWT-EventQueue-0 org.apache.http.client.protocol.RequestAuthCache - Re-using cached 'basic' auth scheme for http://127.0.0.1:5984
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.PoolingHttpClientConnectionManager - Connection request: [route: {}->http://127.0.0.1:5984][total kept alive: 0; route allocated: 0 of 2; total allocated: 0 of 20]
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.PoolingHttpClientConnectionManager - Connection leased: [id: 1][route: {}->http://127.0.0.1:5984][total kept alive: 0; route allocated: 1 of 2; total allocated: 1 of 20]
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Opening connection {}->http://127.0.0.1:5984
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.HttpClientConnectionOperator - Connecting to /127.0.0.1:5984
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.HttpClientConnectionOperator - Connection established 127.0.0.1:3356<->127.0.0.1:5984
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Executing request GET /objarray HTTP/1.1
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Target auth state: CHALLENGED
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Proxy auth state: UNCHALLENGED
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-1 >> GET /objarray HTTP/1.1
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-1 >> Accept: application/json
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-1 >> Host: 127.0.0.1:5984
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-1 >> Connection: Keep-Alive
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-1 >> User-Agent: Apache-HttpClient/4.3.3 (java 1.5)
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-1 >> Accept-Encoding: gzip,deflate
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-1 >> Authorization: Basic YWRtaW46YWRtaW4=
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 >> "GET /objarray HTTP/1.1[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 >> "Accept: application/json[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 >> "Host: 127.0.0.1:5984[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 >> "Connection: Keep-Alive[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 >> "User-Agent: Apache-HttpClient/4.3.3 (java 1.5)[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 >> "Authorization: Basic YWRtaW46YWRtaW4=[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 >> "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "HTTP/1.1 200 OK[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "Server: CouchDB/1.6.1 (Erlang OTP/R16B02)[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "Date: Wed, 01 Oct 2014 17:33:59 GMT[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "Content-Type: application/json[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "Content-Length: 232[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "Cache-Control: must-revalidate[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-1 << HTTP/1.1 200 OK
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-1 << Server: CouchDB/1.6.1 (Erlang OTP/R16B02)
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-1 << Date: Wed, 01 Oct 2014 17:33:59 GMT
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-1 << Content-Type: application/json
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-1 << Content-Length: 232
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-1 << Cache-Control: must-revalidate
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Connection can be kept alive indefinitely
+DEBUG AWT-EventQueue-0 org.apache.http.impl.auth.HttpAuthenticator - Authentication succeeded
+INFO AWT-EventQueue-0 org.lightcouch.CouchDbClient - < Status: 200
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "{"db_name":"objarray","doc_count":2,"doc_del_count":0,"update_seq":4,"purge_seq":0,"compact_running":false,"disk_size":16482,"data_size":995,"instance_start_time":"1412181009239510","disk_format_version":6,"committed_update_seq":4}[\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.PoolingHttpClientConnectionManager - Connection [id: 1][route: {}->http://127.0.0.1:5984] can be kept alive indefinitely
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.PoolingHttpClientConnectionManager - Connection released: [id: 1][route: {}->http://127.0.0.1:5984][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+INFO AWT-EventQueue-0 org.lightcouch.CouchDbClient - > GET/objarray/_design/arrayobjtype/_view/arrayobjtype
+DEBUG AWT-EventQueue-0 org.apache.http.client.protocol.RequestAddCookies - CookieSpec selected: best-match
+DEBUG AWT-EventQueue-0 org.apache.http.client.protocol.RequestAuthCache - Re-using cached 'basic' auth scheme for http://127.0.0.1:5984
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.PoolingHttpClientConnectionManager - Connection request: [route: {}->http://127.0.0.1:5984][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.PoolingHttpClientConnectionManager - Connection leased: [id: 1][route: {}->http://127.0.0.1:5984][total kept alive: 0; route allocated: 1 of 2; total allocated: 1 of 20]
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Stale connection check
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "[read] I/O error: Read timed out"
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Executing request GET /objarray/_design/arrayobjtype/_view/arrayobjtype HTTP/1.1
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Target auth state: CHALLENGED
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Proxy auth state: UNCHALLENGED
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-1 >> GET /objarray/_design/arrayobjtype/_view/arrayobjtype HTTP/1.1
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-1 >> Accept: application/json
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-1 >> Host: 127.0.0.1:5984
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-1 >> Connection: Keep-Alive
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-1 >> User-Agent: Apache-HttpClient/4.3.3 (java 1.5)
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-1 >> Accept-Encoding: gzip,deflate
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-1 >> Authorization: Basic YWRtaW46YWRtaW4=
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 >> "GET /objarray/_design/arrayobjtype/_view/arrayobjtype HTTP/1.1[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 >> "Accept: application/json[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 >> "Host: 127.0.0.1:5984[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 >> "Connection: Keep-Alive[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 >> "User-Agent: Apache-HttpClient/4.3.3 (java 1.5)[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 >> "Authorization: Basic YWRtaW46YWRtaW4=[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 >> "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "HTTP/1.1 200 OK[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "Transfer-Encoding: chunked[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "Server: CouchDB/1.6.1 (Erlang OTP/R16B02)[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "ETag: "6L96SHII1ZEL4JY7D39CMAF9O"[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "Date: Wed, 01 Oct 2014 17:33:59 GMT[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "Content-Type: application/json[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "Cache-Control: must-revalidate[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-1 << HTTP/1.1 200 OK
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-1 << Transfer-Encoding: chunked
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-1 << Server: CouchDB/1.6.1 (Erlang OTP/R16B02)
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-1 << ETag: "6L96SHII1ZEL4JY7D39CMAF9O"
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-1 << Date: Wed, 01 Oct 2014 17:33:59 GMT
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-1 << Content-Type: application/json
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-1 << Cache-Control: must-revalidate
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Connection can be kept alive indefinitely
+DEBUG AWT-EventQueue-0 org.apache.http.impl.auth.HttpAuthenticator - Authentication succeeded
+INFO AWT-EventQueue-0 org.lightcouch.CouchDbClient - < Status: 200
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "25[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "{"total_rows":1,"offset":0,"rows":[[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "20c[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "{"id":"2b50927dc64dc1be0ed8ed136b000088","key":"typeONE","value":{"_id":"2b50927dc64dc1be0ed8ed136b000088","_rev":"1-01ab522e983b5ca9113059e171f944b8","title":"50 Tips and Tricks for MongoDB Developer","author":"Kristina Chodorow","published_date":"2011-05-07T01:26:20.201Z","pages":"1099511600000","language":"English","type":"typeONE","publisher":[{"name":"OReilly Media","founded":1980,"location":"CA"},{"name":"dupenSrupen","founded":66666,"location":"aaa"}],"_deleted_conflicts":["2-eec205a9d413992850a6e32678485900"]}}[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "4[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "]}[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "1[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "[\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "0[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.PoolingHttpClientConnectionManager - Connection [id: 1][route: {}->http://127.0.0.1:5984] can be kept alive indefinitely
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.PoolingHttpClientConnectionManager - Connection released: [id: 1][route: {}->http://127.0.0.1:5984][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - _deleted_conflicts_value VARCHAR(120)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - typeONE_id VARCHAR(120)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - name VARCHAR(24)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - founded INT
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - location VARCHAR(24)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - typeONE_id VARCHAR(120)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - pages VARCHAR(24)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - NotRelationalField
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - author VARCHAR(24)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - _rev VARCHAR(120)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - NotRelationalField
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - language VARCHAR(24)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - _id VARCHAR(120)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - title VARCHAR(120)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - published_date VARCHAR(24)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - end creating schema script
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - publisherset reference to table typeONE_id
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - End reference script generation
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - name dupenSrupen
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - founded 66666
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - location aaa
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - typeONE_id 2b50927dc64dc1be0ed8ed136b000088
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - name OReilly Media
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - founded 1980
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - location CA
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - typeONE_id 2b50927dc64dc1be0ed8ed136b000088
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - pages 1099511600000
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - author Kristina Chodorow
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - _rev 1-01ab522e983b5ca9113059e171f944b8
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - language English
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - _id 2b50927dc64dc1be0ed8ed136b000088
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - title 50 Tips and Tricks for MongoDB Developer
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - published_date 2011-05-07T01:26:20.201Z
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations - End insert script generation

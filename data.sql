@@ -1,13 +1,3 @@
-INSERT INTO publisher2( founded,publisher2_PK,location,name) VALUES ('1980','1','CA','O'Reilly Media');
-INSERT INTO publisher( founded,location,name,publisher_PK,publisher2_id) VALUES ('1980','CA','O'Reilly Media','1','1');
-INSERT INTO publisher( founded,location,name,publisher_PK) VALUES ('1980','CA','O'Reilly Media','2');
-INSERT INTO A( published_date,title,publisher_id,A_PK,pages,language) VALUES ('2010-09-25 07:44:20','MongoDB: The Definitive Guide','1','537c64c3662dae6dd5f23450','216','English');
-INSERT INTO A( published_date,author,title,publisher_id,A_PK,pages,language) VALUES ('2011-05-07 03:26:20','Kristina Chodorow','50 Tips and Tricks for MongoDB Developer','2','537c64c3662dae6dd5f23451','1.0995116E12','English');
-INSERT INTO B( published_date,title,pages,language,B_PK) VALUES ('2010-09-25 07:44:20','MongoDB: The Definitive Guide','216','English','123456789');
-INSERT INTO B( published_date,author,title,pages,language,B_PK) VALUES ('2011-05-07 03:26:20','Kristina Chodorow','50 Tips and Tricks for MongoDB Developer','68','English','234567890');
-INSERT INTO POLA( test,POLA_PK) VALUES ('1','53eded012786ab53bf81a5bb');
-INSERT INTO test( content,test_PK) VALUES ('VG9KZXN0V2lhZG9tb3NjQmluYXJuYQ==','53fa1236587e9abfb3079ab0');
-INSERT INTO author( authorvalue,A_id) VALUES ('Kristina Chodorow','537c64c3662dae6dd5f23450');
-INSERT INTO author( authorvalue,A_id) VALUES ('Mike Dirolf','537c64c3662dae6dd5f23450');
-INSERT INTO author( authorvalue,B_id) VALUES ('Kristina Chodorow','123456789');
-INSERT INTO author( authorvalue,B_id) VALUES ('Mike Dirolf','123456789');
+INSERT INTO publisher( name,founded,location,typeONE_id)  VALUES ('dupenSrupen','66666','aaa','2b50927dc64dc1be0ed8ed136b000088');
+INSERT INTO publisher( name,founded,location,typeONE_id)  VALUES ('OReilly Media','1980','CA','2b50927dc64dc1be0ed8ed136b000088');
+INSERT INTO typeONE( pages,author,_rev,language,_id,title,published_date)  VALUES ('1099511600000','Kristina Chodorow','1-01ab522e983b5ca9113059e171f944b8','English','2b50927dc64dc1be0ed8ed136b000088','50 Tips and Tricks for MongoDB Developer','2011-05-07T01:26:20.201Z');

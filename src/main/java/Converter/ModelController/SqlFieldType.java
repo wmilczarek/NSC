@@ -13,7 +13,7 @@ public enum SqlFieldType {
     UUID,
     Bool,
     Binary,
-    Null;
+    Null, NotRelationalField;
 
 
     SqlFieldType() {

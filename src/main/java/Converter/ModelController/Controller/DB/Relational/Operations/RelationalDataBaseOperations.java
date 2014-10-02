@@ -1,8 +1,14 @@
 package Converter.ModelController.Controller.DB.Relational.Operations;
 
-import Converter.ModelController.Controller.DB.Translator.MongoToSQL;
-import Converter.ModelController.*;
-import Converter.ModelController.MongoModel.*;
+import Converter.ConverterMetaDataModels.BaseModel.TranslationMetaDataEntity;
+import Converter.ModelController.Controller.DB.Translator.DocumentDBToSQL;
+import Converter.ConverterMetaDataModels.BaseModel.DocumentDataBase;
+import Converter.ConverterMetaDataModels.MongoModel.*;
+import Converter.ModelController.Relations;
+import Converter.ConverterMetaDataModels.BaseModel.TranslationMetaDataField;
+import Converter.ConverterMetaDataModels.BaseModel.TranslationMetaDataObject;
+import Converter.ModelController.SqlFieldType;
+import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.sql.Connection;
@@ -10,11 +16,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Map;
+import java.util.Set;
 
 
 public class RelationalDataBaseOperations {
 
     private static Connection connection;
+
+    private static Logger log = Logger.getLogger(RelationalDataBaseOperations.class.getName());
 
 
     private RelationalDataBaseOperations() {
@@ -35,53 +44,58 @@ public class RelationalDataBaseOperations {
         }
     }
 
-    public static void createEntitiesSchemaFromMongo(MongoDataBase mongoDataBase) throws SQLException {
+    public static void createEntitiesSchemaScript(DocumentDataBase DataBase) throws SQLException {
 
 
-        StringBuilder entityQuery = new StringBuilder("CREATE DATABASE '" + mongoDataBase.getDBname() + "';");
+        StringBuilder entityQuery = new StringBuilder("CREATE DATABASE '" + DataBase.getDBname() + "';\n");
 
         //create Entities for X Entities get Y FIeld and assembly SQL Queary
-        for (MongoEntitySchema entity : mongoDataBase.getEntitiesSchema()) {
+        for (TranslationMetaDataEntity entity : (Set<TranslationMetaDataEntity>)DataBase.getEntitiesSchema()) {
 
-            entityQuery.append("CREATE TABLE " + entity.getEntityName() + " ( ");
-            for (MongoFieldSchema field : entity.getEntityFields()) {
-
-
-                        entityQuery.append(field.getFieldName() + " " + field.getSqlType().toString() + " ,");
+            entityQuery.append("CREATE TABLE " + entity.getMetaDataObjectName() + " ( ");
+            for (TranslationMetaDataField field : (Set<TranslationMetaDataField>) entity.getTranslationMetaDataFieldsSchema()) {
+                
+                if(field.getSqlType() == SqlFieldType.NotRelationalField){
+                    log.debug(field.getSqlType().toString());
+                    continue;
+                }
+                log.debug(field.getMetaDataObjectName() + " " + field.getSqlType().toString());
+                entityQuery.append( field.getMetaDataObjectName() + " " + field.getSqlType().toString() + " ,");
 
                 if (field.getRelationProperties().getRelations() == Relations.PrimaryKey) {
 
-                    entityQuery.append(Relations.PrimaryKey.toString() + "(" + field.getFieldName() + "), ");
+                    entityQuery.append(Relations.PrimaryKey.toString() + "(" + field.getMetaDataObjectName() + "), ");
                 }
             }
 
             entityQuery.deleteCharAt(entityQuery.length() - 1);
             entityQuery.append(" ); \n");
         }
-
+        log.debug("end creating schema script");
         wrtiteToSqlFile("schema.sql", entityQuery.toString());
 
     }
 
 
-    public static void createSQLInsert(MongoDataBase mongoDataBase) {
+    public static void createSQLInsertScript(DocumentDataBase documentDataBase) {
 
         StringBuilder entityQuery = new StringBuilder();
 
         //create Entities for X Entities get Y FIeld and assembly SQL Queary
-        for (MongoEntityData entity : mongoDataBase.getEntitiesData()) {
+        for (TranslationMetaDataEntity entity :(Set<TranslationMetaDataEntity>) documentDataBase.getEntitiesSchema()) {
 
 
-            for (MongoRowData row : entity.getMongoFieldData()) {
+            for (DocumentRowMetaData row : entity.getTranslationMetaDataDocuments()) {
 
-                entityQuery.append("INSERT INTO " + entity.getEntityName() + "( ");
+                entityQuery.append("INSERT INTO " + entity.getMetaDataObjectName() + "( ");
                 StringBuilder fieldId = new StringBuilder();
-                StringBuilder fieldValue = new StringBuilder("VALUES (");
+                StringBuilder fieldValue = new StringBuilder(" VALUES (");
 
                 for (Map.Entry entry : row.getFieldValue().entrySet()) {
 
+                    log.debug(entry.getKey() + " " + DocumentDBToSQL.MongoToSqlValueConverter(entry.getValue()));
                     fieldId.append(entry.getKey() + ",");
-                    fieldValue.append("'" + MongoToSQL.MongoToSqlValueConverter(entry.getValue()) + "',");
+                    fieldValue.append("'" + DocumentDBToSQL.MongoToSqlValueConverter(entry.getValue()) + "',");
                 }
 
                 fieldId.deleteCharAt(fieldId.length() - 1);
@@ -92,30 +106,28 @@ public class RelationalDataBaseOperations {
             }
 
         }
-
+        log.debug("End insert script generation");
         wrtiteToSqlFile("data.sql", entityQuery.toString());
 
     }
 
 
-    public static void createSQLReferences(MongoDataBase mongoDataBase) {
+    public static void createSQLReferencesScript(DocumentDataBase documDataBase) {
 
         StringBuilder entityQuery = new StringBuilder();
 
         //create Entities for X Entities get Y FIeld and assembly SQL Queary
-        for (MongoEntitySchema entity : mongoDataBase.getEntitiesSchema()) {
+        for (TranslationMetaDataEntity entity :(Set<TranslationMetaDataEntity>) documDataBase.getEntitiesSchema()) {
 
-            for (MongoFieldSchema field : entity.getEntityFields()) {
+            for (TranslationMetaDataField field: (Set<TranslationMetaDataField>) entity.getTranslationMetaDataFieldsSchema()) {
 
                 if (field.getRelationProperties().getRelations() == Relations.ForeginKey) {
-
-                    entityQuery.append("ALTER TABLE " + entity.getEntityName() + " ADD FOREIGN KEY(" + field.getFieldName().replace("_id", "") + "_id) REFERENCES " + field.getFieldName().replace("_id", "") + "(" + field.getFieldName().replace("_id", "") + "_PK); \n");
-                    //ALTER TABLE A ADD CONSTRAINT _id  FOREIGN KEY(publisher_id)  REFERENCES publisher (_id)
-                    //"ALTER TABLE `table1` ADD CONSTRAINT table1_id_refs FOREIGN KEY (`table2_id`) REFERENCES `table2` (`id`);"
+                    log.debug(entity.getMetaDataObjectName() + "set reference to table " + field.getMetaDataObjectName());
+                    entityQuery.append("ALTER TABLE " + entity.getMetaDataObjectName() + " ADD FOREIGN KEY(" + field.getMetaDataObjectName().replace("_id", "") + "_id) REFERENCES " + field.getMetaDataObjectName().replace("_id", "") + "(" + field.getMetaDataObjectName().replace("_id", "") + "_PK); \n");
                 }
             }
         }
-
+        log.debug("End reference script generation");
         wrtiteToSqlFile("relation.sql", entityQuery.toString());
     }
 

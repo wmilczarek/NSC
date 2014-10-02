@@ -1,9 +1,8 @@
 package Converter.ViewModel;
 
-import Converter.ModelController.Controller.DB.NoSQL.Cauch.CauchConnector;
-import Converter.ModelController.Controller.DB.NoSQL.Cauch.CauchDataBaseOperations;
-import Converter.ModelController.Controller.DB.NoSQL.Mongo.MongoDataBaseOperations;
-import Converter.ModelController.Controller.DB.NoSQL.NoSQLDataBaseOperations;
+import Converter.ModelController.Controller.DB.DocumentDB.Cauch.CauchDataBaseOperations;
+import Converter.ModelController.Controller.DB.DocumentDB.DocumentDataBaseOperations;
+import Converter.ModelController.Controller.DB.DocumentDB.Mongo.MongoDataBaseOperations;
 
 /**
  * Created by szef on 2014-05-15.
@@ -15,9 +14,9 @@ public enum NoSQLTypes {
 
     public String name;
     public String defPort;
-    public NoSQLDataBaseOperations operations;
+    public DocumentDataBaseOperations operations;
 
-    private NoSQLTypes(String name, String defPort, NoSQLDataBaseOperations operations) {
+    private NoSQLTypes(String name, String defPort, DocumentDataBaseOperations operations) {
         this.name = name;
         this.defPort = defPort;
         this.operations = operations;

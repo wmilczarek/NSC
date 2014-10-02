@@ -1,6 +1,6 @@
 package Converter.ViewModel;
 
-import Converter.ModelController.Controller.DB.NoSQL.NoSQLDataBaseOperations;
+import Converter.ModelController.Controller.DB.DocumentDB.DocumentDataBaseOperations;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -28,10 +28,10 @@ public class MigrationForm extends JFrame {
     private JList entitiListLeft;
     private JTable fieldTableRight;
 
-    private NoSQLDataBaseOperations noSqlOperaions;
+    private DocumentDataBaseOperations noSqlOperaions;
 
 
-    public MigrationForm(NoSQLDataBaseOperations operations) throws HeadlessException {
+    public MigrationForm(DocumentDataBaseOperations operations) throws HeadlessException {
 
         super("MigrationForm");
         setContentPane(panel1);

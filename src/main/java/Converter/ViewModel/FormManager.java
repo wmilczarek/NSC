@@ -1,6 +1,6 @@
 package Converter.ViewModel;
 
-import Converter.ModelController.Controller.DB.NoSQL.NoSQLDataBaseOperations;
+import Converter.ModelController.Controller.DB.DocumentDB.DocumentDataBaseOperations;
 
 import javax.swing.*;
 
@@ -19,7 +19,7 @@ public class FormManager {
         connectForm = new ConnectForm();
     }
 
-    public static void connect(NoSQLDataBaseOperations noSqlOperations) {
+    public static void connect(DocumentDataBaseOperations noSqlOperations) {
         connectForm.setVisible(false);
         migrationForm = new MigrationForm(noSqlOperations);
     }
