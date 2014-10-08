@@ -1,1 +1,0 @@
-ALTER TABLE publisher ADD FOREIGN KEY(typeONE_id) REFERENCES typeONE(typeONE_PK); 

@@ -10,7 +10,8 @@ import javax.swing.*;
 public class FormManager {
 
     private static ConnectForm connectForm;
-    private static MigrationForm migrationForm;
+    private static MongoDBForm mongoDBForm;
+    private static CouchDBForm couchDBForm;
 
     private FormManager() {
     }
@@ -19,9 +20,15 @@ public class FormManager {
         connectForm = new ConnectForm();
     }
 
-    public static void connect(DocumentDataBaseOperations noSqlOperations) {
+    public static void connect(DocumentTypesDB documentTypesDB) {
         connectForm.setVisible(false);
-        migrationForm = new MigrationForm(noSqlOperations);
+
+        if(documentTypesDB == DocumentTypesDB.MongoDB) {
+            mongoDBForm = new MongoDBForm(documentTypesDB);
+        } else if (documentTypesDB == DocumentTypesDB.CouchDB){
+            couchDBForm = new CouchDBForm(documentTypesDB);
+
+        }
     }
 
 

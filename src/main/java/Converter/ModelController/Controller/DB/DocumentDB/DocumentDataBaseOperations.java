@@ -1,37 +1,30 @@
 package Converter.ModelController.Controller.DB.DocumentDB;
 
-import Converter.ViewModel.NoSQLTypes;
+import Converter.ConverterMetaDataModels.MongoModel.TranslationDataBase;
+import Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations;
+import Converter.ViewModel.DocumentTypesDB;
 
 import java.net.UnknownHostException;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- * Created by szef on 2014-06-07.
- */
 public abstract class DocumentDataBaseOperations {
 
-    public NoSQLTypes getNoSqlType(){
-        return null;
-    }
+    protected TranslationDataBase dataBase;
 
     private DocumentDataBaseOperations InstancoOf;
 
-    private Connector connector;
+    protected SqlPrintOperations printSql = SqlPrintOperations.getInstance();
+
+    public DocumentTypesDB getNoSqlType() {
+        return null;
+    }
 
     public DocumentDataBaseOperations getInstancoOf() {
         return InstancoOf;
     }
 
-    public Connector getConnector() {
-        return connector;
-    }
-
-    public  void setConnector(Connector connector) {
-        this.connector = connector;
-    }
-
-    public List<String> GetDataBaseNames(){
+    public List<String> GetDataBaseNames() {
 
         return null;
     }
@@ -40,11 +33,16 @@ public abstract class DocumentDataBaseOperations {
 
     //public abstract List<String> ResolveAndGetFields(String dbName, String EntityName) throws UnknownHostException;
 
+    protected void printMetaDataToSQL() throws SQLException {
+        printSql.createEntitiesSchemaScript(dataBase);
+        printSql.createSQLReferencesScript(dataBase);
+        printSql.createSQLInsertScript(dataBase);
+    }
+
     // dictionary - Filed Name, All Types
     public abstract List<List<String>> showFields(String dbName, String EntityName) throws UnknownHostException;
 
     public abstract void loadIntoMemory(String dbName);
-
 
 
 }

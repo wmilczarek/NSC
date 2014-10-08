@@ -10,10 +10,10 @@ public enum SqlFieldType {
     VarcharLong,
     DateTime,
     Text,
-    UUID,
     Bool,
     Binary,
-    Null, NotRelationalField;
+    Null,
+    NotRelationalField;
 
 
     SqlFieldType() {
@@ -43,6 +43,8 @@ public enum SqlFieldType {
             return "VARCHAR(120)";
         } else if (this == SqlFieldType.Binary){
             return "BLOB";
+        }else if (this == SqlFieldType.Null){
+            return "NULL";
         }
 
 

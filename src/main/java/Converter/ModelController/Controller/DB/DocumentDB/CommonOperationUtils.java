@@ -1,10 +1,12 @@
 package Converter.ModelController.Controller.DB.DocumentDB;
 
 
-import Converter.ConverterMetaDataModels.BaseModel.DocumentDataBase;
-import Converter.ConverterMetaDataModels.BaseModel.TranslationMetaDataEntity;
 import Converter.ConverterMetaDataModels.BaseModel.TranslationMetaDataObject;
 import Converter.ConverterMetaDataModels.MongoModel.DocumentRowMetaData;
+import Converter.ConverterMetaDataModels.MongoModel.TranslationDataBase;
+import Converter.ConverterMetaDataModels.MongoModel.TranslationEntitySchema;
+import Converter.ConverterMetaDataModels.MongoModel.TranslationFieldSchema;
+import Converter.ModelController.Relations;
 
 import java.util.HashSet;
 import java.util.List;
@@ -18,13 +20,13 @@ public class CommonOperationUtils {
 
 
     //związki wiele do wielu dla tablic
-    public static void dataArrayRelationNormalization(DocumentDataBase documentDataBase){
+    public static void dataArrayRelationNormalization(TranslationDataBase documentDataBase){
 
 
-        List<TranslationMetaDataEntity> arrays = ((Set<TranslationMetaDataEntity>) documentDataBase.getEntitiesSchema()).stream().filter(e -> e.isFromArray()).collect(Collectors.toList());
+        List<TranslationEntitySchema> arrays = ((Set<TranslationEntitySchema>) documentDataBase.getEntitiesSchema()).stream().filter(e -> e.isFromArray()).collect(Collectors.toList());
 
 
-        for(TranslationMetaDataEntity array:arrays){
+        for(TranslationEntitySchema array:arrays){
 
 
             Set<Object> test = new HashSet<Object>();
@@ -53,7 +55,32 @@ public class CommonOperationUtils {
 
     }
 
+    public static void changeName(TranslationDataBase dataBase) {
 
+
+        for ( TranslationEntitySchema translationMetaDataEntity : dataBase.getEntitiesSchema()) {
+            for (TranslationFieldSchema translationMetaDataField : translationMetaDataEntity.getTranslationMetaDataFieldsSchema()) {
+
+                if (translationMetaDataField.getRelationProperties().getRelations() == Relations.PrimaryKey) {
+                    translationMetaDataField.setMetaDataObjectName(translationMetaDataEntity.getMetaDataObjectName() + "_PK");
+                }
+            }
+
+        }
+
+
+        for (TranslationEntitySchema translationMetaDataEntity :  dataBase.getEntitiesSchema()) {
+            for (DocumentRowMetaData documentRowMetaData :  translationMetaDataEntity.getTranslationMetaDataDocuments()) {
+
+                Object obj = documentRowMetaData.getFieldValue().get("_id");
+                if (obj != null) {
+                    documentRowMetaData.getFieldValue().remove("_id");
+                    documentRowMetaData.getFieldValue().put(translationMetaDataEntity.getMetaDataObjectName() + "_PK", obj);
+                }
+            }
+
+        }
+    }
 
     public static <T extends TranslationMetaDataObject> TranslationMetaDataObject findOrCreateMetaData(T newObject, Set<T> metaData) {
 

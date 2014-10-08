@@ -26,12 +26,11 @@ public class ConnectForm extends JFrame {
 
     public void InitDbCombo() {
 
-        DbCombo.addItem(NoSQLTypes.MongoDB);
-        DbCombo.addItem(NoSQLTypes.Cauch);
+        DbCombo.addItem(DocumentTypesDB.MongoDB);
+        DbCombo.addItem(DocumentTypesDB.CouchDB);
         DbCombo.addItemListener(new ItemChangeListener());
-        textFieldAdress.setText("localhost");
-        textFieldPort.setText(NoSQLTypes.MongoDB.defPort);
-
+        textFieldPort.setText(String.valueOf(((DocumentTypesDB) DbCombo.getSelectedItem()).getDefPort()));
+        textFieldAdress.setText(String.valueOf(((DocumentTypesDB) DbCombo.getSelectedItem()).getHost()));
     }
 
     public void InitButton() {
@@ -39,14 +38,10 @@ public class ConnectForm extends JFrame {
         ConnectButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                NoSQLTypes item = (NoSQLTypes) DbCombo.getSelectedItem();
-                // FormManager.statusDialog();
-                if (item.defPort != textFieldPort.getText()) {
-
-                }
-
-                FormManager.connect(item.operations);
-
+                DocumentTypesDB item = (DocumentTypesDB) DbCombo.getSelectedItem();
+                item.setDefPort(Integer.valueOf(textFieldPort.getText()));
+                item.setAddress(textFieldAdress.getText());
+                FormManager.connect(item);
             }
         });
 
@@ -57,8 +52,9 @@ public class ConnectForm extends JFrame {
         public void itemStateChanged(ItemEvent event) {
 
             if (event.getStateChange() == ItemEvent.SELECTED) {
-                NoSQLTypes item = (NoSQLTypes) event.getItem();
-                textFieldPort.setText(item.defPort);
+                DocumentTypesDB item = (DocumentTypesDB) event.getItem();
+                textFieldPort.setText(String.valueOf(item.getDefPort()));
+                textFieldAdress.setText(String.valueOf(item.getHost()));
             }
         }
     }

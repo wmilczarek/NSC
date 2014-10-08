@@ -72,7 +72,7 @@ public class DocumentDBToSQL {
             return sqlType;
         }
 
-        return SqlFieldType.Text;
+        return SqlFieldType.Null;
     }
 
     private static SqlFieldType resolveTypeBoolen(SqlFieldType type) {
@@ -84,13 +84,12 @@ public class DocumentDBToSQL {
 
     private static SqlFieldType resolveTypeDate(SqlFieldType type) throws IncompatibleFieldTypeConversionException {
 
-        if (type == null) {
+        if (type == SqlFieldType.Null || type == null) {
             return SqlFieldType.DateTime;
-        } else if (type == SqlFieldType.Bool || type == SqlFieldType.Binary) {
+        } else  {
             throw new IncompatibleFieldTypeConversionException(type.toString());
         }
 
-        return SqlFieldType.Text;
 
     }
 
@@ -109,8 +108,14 @@ public class DocumentDBToSQL {
 
         if (type == null || type == SqlFieldType.Intager) {
             return SqlFieldType.LongIntager;
-        } else if (type == SqlFieldType.DateTime) {
-            //TODO: nowe pole jesli bardzo sprzeczne.
+        } else if (type == SqlFieldType.VarcharShort ) {
+            return SqlFieldType.VarcharShort;
+        } else if (type == SqlFieldType.VarcharLong){
+            return SqlFieldType.VarcharLong;
+        } else if (type == SqlFieldType.Text){
+            return SqlFieldType.Text;
+        }else if (type == SqlFieldType.DoublePrecision) {
+            return SqlFieldType.DoublePrecision;
         }
 
         return type;
@@ -119,10 +124,12 @@ public class DocumentDBToSQL {
     private static SqlFieldType resolveTypeDouble(SqlFieldType type) {
 
         if (type == null || type == SqlFieldType.Intager) {
-            return SqlFieldType.LongIntager;
-        } else if (type == SqlFieldType.DateTime) {
-            //TODO: nowe pole jesli bardzo sprzeczne.
-        } else if (type == SqlFieldType.LongIntager) {
+            return SqlFieldType.DoublePrecision;
+        } else if (type == SqlFieldType.VarcharShort) {
+            return SqlFieldType.VarcharShort;
+        } else if (type == SqlFieldType.VarcharLong) {
+            return SqlFieldType.VarcharLong;
+        } else if (type == SqlFieldType.Text) {
             return SqlFieldType.Text;
         }
 
@@ -189,16 +196,16 @@ public class DocumentDBToSQL {
 
         if (value.getClass() == Date.class) {
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            return df.format(((Date) value)).replace("'", "\'");
+            return "'" + df.format(((Date) value)).replace("'", "\'") + "'";
         }
         if (value.getClass() == NullType.class) {
             return "NULL";
         }
         if (value.getClass() == new byte[0].getClass()) {
 
-            return new sun.misc.BASE64Encoder().encode((byte[]) value);
+            return "'" + new sun.misc.BASE64Encoder().encode((byte[]) value) + "'";
         }
 
-        return value.toString().replace("'", "\'");
+        return "'" + value.toString().replace("'", "\'") + "'";
     }
 }

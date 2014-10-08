@@ -1,6 +1,6 @@
 package Converter.ModelController.Controller.DB.DocumentDB.Mongo;
 
-import Converter.ViewModel.NoSQLTypes;
+import Converter.ViewModel.DocumentTypesDB;
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
 
@@ -13,8 +13,6 @@ public class MongoConnector  {
 
     private static MongoClient mongoClient;
 
-    private static DB MongoDB;
-
     private MongoConnector() {}
 
 
@@ -23,10 +21,10 @@ public class MongoConnector  {
         return ourInstance;
     }
 
-    public static MongoClient getMongoClient(NoSQLTypes noSql){
+    public MongoClient getMongoClient(DocumentTypesDB noSql){
         if(mongoClient == null){
             try {
-                mongoClient = new MongoClient("localhost",Integer.parseInt(noSql.defPort) );
+                mongoClient = new MongoClient(noSql.getHost(),noSql.getDefPort());
             } catch (UnknownHostException e) {
                 e.printStackTrace();
             }

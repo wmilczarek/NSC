@@ -22,6 +22,6 @@ Log4J
 
 
 ============================== na 2 wrzesnia ==========
-Ujednolicic typu modelu
+Ujednolicic typu modelu DONE
 refactoring
 podniesienie couchDB to satanu mongo

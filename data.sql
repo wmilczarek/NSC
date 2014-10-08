@@ -1,3 +1,2 @@
-INSERT INTO publisher( name,founded,location,typeONE_id)  VALUES ('dupenSrupen','66666','aaa','2b50927dc64dc1be0ed8ed136b000088');
-INSERT INTO publisher( name,founded,location,typeONE_id)  VALUES ('OReilly Media','1980','CA','2b50927dc64dc1be0ed8ed136b000088');
-INSERT INTO typeONE( pages,author,_rev,language,_id,title,published_date)  VALUES ('1099511600000','Kristina Chodorow','1-01ab522e983b5ca9113059e171f944b8','English','2b50927dc64dc1be0ed8ed136b000088','50 Tips and Tricks for MongoDB Developer','2011-05-07T01:26:20.201Z');
+INSERT INTO water_tank( owner,refill_date,storage_location,size_in_liters,schedule_refill,_rev,water_tank_PK)  VALUES ('mr xyz','2010-01-25 07:44:20','B3','55','2010-01-11 09:30:20','4-3805d633cf72c3ab96cda396b3360edd','2');
+INSERT INTO water_tank( refill_date,storage_location,size_in_liters,schedule_refill,_rev,water_tank_PK)  VALUES (NULL,'7','120.5',NULL,'4-75427fe4f3a4e3c04cb1f7f4b4b5fcb9','5');

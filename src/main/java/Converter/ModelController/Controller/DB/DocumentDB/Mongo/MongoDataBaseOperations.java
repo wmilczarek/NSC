@@ -1,15 +1,15 @@
 package Converter.ModelController.Controller.DB.DocumentDB.Mongo;
 
 import Converter.ConverterMetaDataModels.MongoModel.DocumentRowMetaData;
-import Converter.ConverterMetaDataModels.MongoModel.MongoDataBase;
-import Converter.ConverterMetaDataModels.MongoModel.MongoEntitySchema;
-import Converter.ConverterMetaDataModels.MongoModel.MongoFieldSchema;
+import Converter.ConverterMetaDataModels.MongoModel.TranslationEntitySchema;
+import Converter.ConverterMetaDataModels.MongoModel.TranslationDataBase;
+import Converter.ConverterMetaDataModels.MongoModel.TranslationFieldSchema;
 import Converter.ModelController.Controller.DB.DocumentDB.DocumentDataBaseOperations;
 import Converter.ModelController.Controller.DB.Translator.DocumentDBToSQL;
 import Converter.ModelController.Controller.DB.Translator.IncompatibleFieldTypeConversionException;
 import Converter.ModelController.HelperTypes.NullType;
 import Converter.ModelController.Relations;
-import Converter.ViewModel.NoSQLTypes;
+import Converter.ViewModel.DocumentTypesDB;
 import com.mongodb.*;
 
 import java.net.UnknownHostException;
@@ -17,18 +17,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Converter.ModelController.Controller.DB.DocumentDB.CommonOperationUtils.changeName;
 import static Converter.ModelController.Controller.DB.DocumentDB.CommonOperationUtils.dataArrayRelationNormalization;
 import static Converter.ModelController.Controller.DB.DocumentDB.CommonOperationUtils.findOrCreateMetaData;
-import static Converter.ModelController.Controller.DB.DocumentDB.Mongo.MongoOperationUtils.changeName;
-
-import static Converter.ModelController.Controller.DB.Relational.Operations.RelationalDataBaseOperations.*;
-
 
 public class MongoDataBaseOperations extends DocumentDataBaseOperations {
 
     private static final MongoDataBaseOperations ourInstance = new MongoDataBaseOperations();
     private MongoConnector mongoConnector;
-    private MongoDataBase mongoData;
 
     private MongoDataBaseOperations() {
     }
@@ -38,8 +34,8 @@ public class MongoDataBaseOperations extends DocumentDataBaseOperations {
     }
 
     @Override
-    public NoSQLTypes getNoSqlType() {
-        return NoSQLTypes.MongoDB;
+    public DocumentTypesDB getNoSqlType() {
+        return DocumentTypesDB.MongoDB;
     }
 
     @Override
@@ -56,42 +52,39 @@ public class MongoDataBaseOperations extends DocumentDataBaseOperations {
         List<String> list = new ArrayList<String>();
 
 
-        //Load to memory DataBase
+        //Load to memory dataBase
         loadIntoMemory(dbName);
 
         //resolveArraySchemas();
 
-        changeName(mongoData);
+        changeName(this.dataBase);
 
         // findRelationAndSetRelations();
         //synchronizeKeys();
 
 
 
-        for (MongoEntitySchema name : mongoData.getEntitiesSchema()) {
+        for (TranslationEntitySchema name : this.dataBase.getEntitiesSchema()) {
             list.add(name.getEntityName());
         }
 
-        dataArrayRelationNormalization(mongoData);
+        dataArrayRelationNormalization(this.dataBase);
 
 
         translateFieldsOfAllEnteties();
-        createEntitiesSchemaScript(mongoData);
-        createSQLReferencesScript(mongoData);
-        createSQLInsertScript(mongoData);
-
+        printMetaDataToSQL();
 
         return list;
     }
 
     private void translateFieldsOfAllEnteties() {
 
-        for (MongoEntitySchema mongoEntitySchema : mongoData.getEntitiesSchema()) {
+        for (TranslationEntitySchema translationEntitySchema : dataBase.getEntitiesSchema()) {
 
-            for (MongoFieldSchema mongoFieldSchema : mongoEntitySchema.getEntityFields()) {
+            for (TranslationFieldSchema translationFieldSchema : translationEntitySchema.getEntityFields()) {
 
                 try {
-                    mongoFieldSchema.setSqlType(DocumentDBToSQL.documentToSqlFieldConversion(mongoFieldSchema.getMetadataType()));
+                    translationFieldSchema.setSqlType(DocumentDBToSQL.documentToSqlFieldConversion(translationFieldSchema.getMetadataType()));
                 } catch (IncompatibleFieldTypeConversionException e) {
                     e.printStackTrace();
                 }
@@ -103,21 +96,21 @@ public class MongoDataBaseOperations extends DocumentDataBaseOperations {
     private void findRelationAndSetRelations() {
 
         // Dla każdego meta schematu
-        for (MongoEntitySchema mongoEntitySchema : mongoData.getEntitiesSchema()) {
+        for (TranslationEntitySchema translationEntitySchema : dataBase.getEntitiesSchema()) {
 
             // Dla każdego potencjalnego klucza obcego
-            for (MongoFieldSchema schemaField : mongoEntitySchema.getBindableFields()) {
+            for (TranslationFieldSchema schemaField : translationEntitySchema.getBindableFields()) {
 
                 // Sprawdz czy wpisuje się w konwencje
                 if (schemaField.getFieldName().contains("_id")) {
                     //Sprawdz czy istnieje encja w relacji
                     //TODO:raportowanie bledow
                     String inRelationEntity = schemaField.getFieldName().replace("_id", "");
-                    if (mongoData.checkIfEntityExists(inRelationEntity)) {
+                    if (dataBase.checkIfEntityExists(inRelationEntity)) {
                         //Przypisz wlasciowsci relacj, pole klucza, typ relacji
                         schemaField.getRelationProperties().setRelations(Relations.ForeginKey);
                         schemaField.getRelationProperties().setFatherNames(inRelationEntity);
-                        mongoData.appendEntitySchema(mongoEntitySchema.getEntityName(), schemaField);
+                        dataBase.appendEntitySchema(translationEntitySchema.getEntityName(), schemaField);
                     }
                 }
             }
@@ -125,7 +118,7 @@ public class MongoDataBaseOperations extends DocumentDataBaseOperations {
     }
 
 
-    public List<MongoEntitySchema> resolveGetEntitesWithFieldsObjects(String dbName) throws UnknownHostException {
+    public List<TranslationEntitySchema> resolveGetEntitesWithFieldsObjects(String dbName) throws UnknownHostException {
         DB dataBase = mongoConnector.getInstance().getDB(dbName);
 
         for (String name : dataBase.getCollectionNames()) {
@@ -154,14 +147,14 @@ public class MongoDataBaseOperations extends DocumentDataBaseOperations {
             return null;
         }
 
-        for (MongoEntitySchema ent : mongoData.getEntitiesSchema()) {
+        for (TranslationEntitySchema ent : dataBase.getEntitiesSchema()) {
 
             if (ent.getEntityName().equals(entityName)) {
 
                 List<List<String>> tableData = new ArrayList<List<String>>();
                 List<String> row;
 
-                for (MongoFieldSchema field : ent.getEntityFields()) {
+                for (TranslationFieldSchema field : ent.getEntityFields()) {
                     row = new ArrayList<String>();
                     row.add(field.getFieldName());
                     row.add(field.getSqlType().toString());
@@ -179,7 +172,7 @@ public class MongoDataBaseOperations extends DocumentDataBaseOperations {
     public void getObjectsDataAndCreateSchema(DBObject dbObject, String entityName, DocumentRowMetaData existingMetaDataRow) throws UnknownHostException {
 
         DocumentRowMetaData documentRowMetaData;
-        MongoEntitySchema mongoEntitySchema = (MongoEntitySchema) findOrCreateMetaData(new MongoEntitySchema(entityName), mongoData.getEntitiesSchema());
+        TranslationEntitySchema translationEntitySchema = (TranslationEntitySchema) findOrCreateMetaData(new TranslationEntitySchema(entityName), dataBase.getEntitiesSchema());
 
         if (existingMetaDataRow != null) {
             documentRowMetaData = existingMetaDataRow;
@@ -190,7 +183,8 @@ public class MongoDataBaseOperations extends DocumentDataBaseOperations {
 
         for (String fieldName : dbObject.keySet()) {
 
-            MongoFieldSchema mongoFieldSchema = (MongoFieldSchema) findOrCreateMetaData(new MongoFieldSchema(fieldName), mongoEntitySchema.getEntityFields());
+            TranslationFieldSchema translationFieldSchema = (TranslationFieldSchema) findOrCreateMetaData(new TranslationFieldSchema(fieldName), translationEntitySchema.getEntityFields());
+            translationFieldSchema.keyChecker();
             Object value = dbObject.get(fieldName);
 
             if (value == null) {
@@ -200,10 +194,10 @@ public class MongoDataBaseOperations extends DocumentDataBaseOperations {
             // Dla zagnieżdzonego obiektu
             if (value.getClass() == BasicDBObject.class) {
 
-                mongoFieldSchema.setMetaDataType(BasicDBObject.class);
+                translationFieldSchema.setMetaDataType(BasicDBObject.class);
                 String newFieldName = fieldName + "_id";
-                MongoFieldSchema newFkField = (MongoFieldSchema) findOrCreateMetaData(new MongoFieldSchema(newFieldName), mongoEntitySchema.getEntityFields());
-                MongoEntitySchema currentEntityField = (MongoEntitySchema) findOrCreateMetaData(new MongoEntitySchema(fieldName), mongoData.getEntitiesSchema());
+                TranslationFieldSchema newFkField = (TranslationFieldSchema) findOrCreateMetaData(new TranslationFieldSchema(newFieldName), translationEntitySchema.getEntityFields());
+                TranslationEntitySchema currentEntityField = (TranslationEntitySchema) findOrCreateMetaData(new TranslationEntitySchema(fieldName), dataBase.getEntitiesSchema());
 
                 //Postaraj się wziąść wartość klucza obcego z id dokumentu zagnieżdżonego
                 Object fkValue = this.tryToGetForeginKeyOfSubDocument((DBObject) dbObject.get(fieldName), currentEntityField);
@@ -217,17 +211,17 @@ public class MongoDataBaseOperations extends DocumentDataBaseOperations {
             } else if (value.getClass() == BasicDBList.class) {
                 //TODO: A co jesli nie ma ID
                 handleArrayAsEntity(fieldName, entityName, dbObject.get("_id"), (BasicDBList) value);
-                mongoFieldSchema.setMetaDataType(BasicDBList.class);
-                mongoFieldSchema.getRelationProperties().setRelations(Relations.None);
+                translationFieldSchema.setMetaDataType(BasicDBList.class);
+                translationFieldSchema.getRelationProperties().setRelations(Relations.None);
 
                 continue;
 
             } else if (value.getClass() == DBRef.class) {
 
-                mongoFieldSchema.setMetaDataType(DBRef.class);
+                translationFieldSchema.setMetaDataType(DBRef.class);
                 String newFieldName = ((DBRef) value).getRef() + "_id";
 
-                MongoFieldSchema newFkField = (MongoFieldSchema) findOrCreateMetaData(new MongoFieldSchema(newFieldName), mongoEntitySchema.getEntityFields());
+                TranslationFieldSchema newFkField = (TranslationFieldSchema) findOrCreateMetaData(new TranslationFieldSchema(newFieldName), translationEntitySchema.getEntityFields());
                 newFkField.keyChecker();
 
                 Object fkValue = ((DBRef) value).getId();
@@ -238,27 +232,24 @@ public class MongoDataBaseOperations extends DocumentDataBaseOperations {
                 //dodanie danych
                 documentRowMetaData.setFieldValue(fieldName, value);
                 // Dodanie typu
-                mongoFieldSchema.setMetaDataType(value);
-                // Dodanie relacji
-                mongoFieldSchema.keyChecker();
-                mongoFieldSchema.keyChecker();
+                translationFieldSchema.setMetaDataType(value);
             }
         }
-        mongoEntitySchema.setMongoFieldData(documentRowMetaData);
+        translationEntitySchema.setFieldData(documentRowMetaData);
 
     }
 
-    private void resolveObjectForeginKeyRelation(DBObject dbObject, String fieldName, MongoEntitySchema currentEntityField) throws UnknownHostException {
+    private void resolveObjectForeginKeyRelation(DBObject dbObject, String fieldName, TranslationEntitySchema currentEntityField) throws UnknownHostException {
 
         // Jeśli nie ma domyślnej wartości ID, używaj wbudowanego auto inkrementującego się klucz.
         if (!this.hasDocumentAnyId(dbObject)) {
 
-            MongoEntitySchema mongoEntitySchema = (MongoEntitySchema) findOrCreateMetaData(new MongoEntitySchema(fieldName), mongoData.getEntitiesSchema());
-            MongoFieldSchema mongoFieldSchema = (MongoFieldSchema) findOrCreateMetaData(new MongoFieldSchema("_id"), mongoEntitySchema.getEntityFields());
-            mongoFieldSchema.setMetaDataType(Long.class);
+            TranslationEntitySchema translationEntitySchema = (TranslationEntitySchema) findOrCreateMetaData(new TranslationEntitySchema(fieldName), dataBase.getEntitiesSchema());
+            TranslationFieldSchema translationFieldSchema = (TranslationFieldSchema) findOrCreateMetaData(new TranslationFieldSchema("_id"), translationEntitySchema.getEntityFields());
+            translationFieldSchema.setMetaDataType(Long.class);
             DocumentRowMetaData documentRowMetaData = new DocumentRowMetaData();
             documentRowMetaData.setFieldValue("_id", currentEntityField.getIncrementAutoPrimaryKey());
-            mongoFieldSchema.keyChecker();
+            translationFieldSchema.keyChecker();
             getObjectsDataAndCreateSchema((DBObject) dbObject.get(fieldName), fieldName, documentRowMetaData);
 
 
@@ -267,7 +258,7 @@ public class MongoDataBaseOperations extends DocumentDataBaseOperations {
         }
     }
 
-    private MongoFieldSchema resolveDBRef(BasicDBObject value) {
+    private TranslationFieldSchema resolveDBRef(BasicDBObject value) {
 
         return null;
     }
@@ -281,7 +272,7 @@ public class MongoDataBaseOperations extends DocumentDataBaseOperations {
         }
     }
 
-    private Object tryToGetForeginKeyOfSubDocument(DBObject currentField, MongoEntitySchema entity) {
+    private Object tryToGetForeginKeyOfSubDocument(DBObject currentField, TranslationEntitySchema entity) {
 
         // jeśli poddokument nie posiada klucza _id stworz go!
         try {
@@ -322,19 +313,21 @@ public class MongoDataBaseOperations extends DocumentDataBaseOperations {
 
 
 
-        MongoEntitySchema mongoEntitySchema = (MongoEntitySchema) findOrCreateMetaData(new MongoEntitySchema(newEntityName), mongoData.getEntitiesSchema());
-        mongoEntitySchema.setFromArray(true);
+        TranslationEntitySchema translationEntitySchema = (TranslationEntitySchema) findOrCreateMetaData(new TranslationEntitySchema(newEntityName), dataBase.getEntitiesSchema());
+        translationEntitySchema.setFromArray(true);
 
-        MongoFieldSchema mongoFieldSchema = (MongoFieldSchema) findOrCreateMetaData(new MongoFieldSchema(typeName + suffix), mongoEntitySchema.getEntityFields());
-        MongoFieldSchema mongoIdFieldSchema = (MongoFieldSchema) findOrCreateMetaData(new MongoFieldSchema(fatherEntityName + "_id"), mongoEntitySchema.getEntityFields());
+        TranslationFieldSchema translationFieldSchema = (TranslationFieldSchema) findOrCreateMetaData(new TranslationFieldSchema(typeName + suffix), translationEntitySchema.getEntityFields());
+        TranslationFieldSchema mongoIdFieldSchema = (TranslationFieldSchema) findOrCreateMetaData(new TranslationFieldSchema(fatherEntityName + "_id"), translationEntitySchema.getEntityFields());
         mongoIdFieldSchema.setMetaDataType(fatherId);
+        mongoIdFieldSchema.keyChecker();
+        translationFieldSchema.keyChecker();
 
         for (Object element : currentList) {
             DocumentRowMetaData documentRowMetaData = new DocumentRowMetaData();
-            mongoFieldSchema.setMetaDataType(element);
+            translationFieldSchema.setMetaDataType(element);
             documentRowMetaData.setFieldValue(fatherEntityName + "_id", fatherId);
             documentRowMetaData.setFieldValue(typeName + suffix, element);
-            mongoEntitySchema.setMongoFieldData(documentRowMetaData);
+            translationEntitySchema.setFieldData(documentRowMetaData);
         }
 
 
@@ -343,10 +336,10 @@ public class MongoDataBaseOperations extends DocumentDataBaseOperations {
 
     private void handleArrayOfObjects(String fatherEntityName, Object fatherId, BasicDBList currentList, String newEntityName) {
 
-        MongoEntitySchema mongoEntitySchema = (MongoEntitySchema) findOrCreateMetaData(new MongoEntitySchema(newEntityName), mongoData.getEntitiesSchema());
-        MongoFieldSchema mongoFieldSchema = (MongoFieldSchema) findOrCreateMetaData(new MongoFieldSchema(fatherEntityName + "_id"), mongoEntitySchema.getEntityFields());
-        mongoFieldSchema.setMetaDataType(fatherId.getClass());
-        mongoFieldSchema.keyChecker();
+        TranslationEntitySchema translationEntitySchema = (TranslationEntitySchema) findOrCreateMetaData(new TranslationEntitySchema(newEntityName), dataBase.getEntitiesSchema());
+        TranslationFieldSchema translationFieldSchema = (TranslationFieldSchema) findOrCreateMetaData(new TranslationFieldSchema(fatherEntityName + "_id"), translationEntitySchema.getEntityFields());
+        translationFieldSchema.setMetaDataType(fatherId.getClass());
+        translationFieldSchema.keyChecker();
         for (Object element : currentList.toArray()) {
             try {
                 DocumentRowMetaData documentRowMetaData = new DocumentRowMetaData();
@@ -360,14 +353,14 @@ public class MongoDataBaseOperations extends DocumentDataBaseOperations {
 
     @Override
     public void loadIntoMemory(String dbName) {
-        mongoData = new MongoDataBase();
+        dataBase = new TranslationDataBase();
         try {
             DB dataBase = mongoConnector.getInstance().getDB(dbName);
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
 
-        mongoData.setDBname(dbName);
+        dataBase.setDBname(dbName);
         try {
             this.resolveGetEntitesWithFieldsObjects(dbName);
         } catch (UnknownHostException e) {

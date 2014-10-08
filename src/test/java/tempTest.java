@@ -1,5 +1,4 @@
 
-import Converter.ViewModel.NoSQLTypes;
 import org.junit.Test;
 
 /**
