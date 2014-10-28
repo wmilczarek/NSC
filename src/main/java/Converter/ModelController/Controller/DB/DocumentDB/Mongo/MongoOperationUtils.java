@@ -1,9 +1,6 @@
 package Converter.ModelController.Controller.DB.DocumentDB.Mongo;
 
-import Converter.ConverterMetaDataModels.MongoModel.*;
-import Converter.ModelController.Relations;
-
-import java.util.Set;
+import Converter.ConverterMetaDataModels.DataModel.*;
 
 import static Converter.ModelController.Controller.DB.DocumentDB.CommonOperationUtils.findOrCreateMetaData;
 

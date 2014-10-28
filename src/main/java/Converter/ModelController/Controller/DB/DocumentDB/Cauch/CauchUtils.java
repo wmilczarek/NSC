@@ -3,21 +3,25 @@ package Converter.ModelController.Controller.DB.DocumentDB.Cauch;
 import Converter.ModelController.HelperTypes.NullType;
 import com.google.gson.JsonElement;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Properties;
 
-/**
- * Created by szef on 2014-09-09.
- */
+
 public class CauchUtils {
 
     private CauchUtils() {
     }
 
+
+
     public static Object resolvePreMetaDataTypes(JsonElement element) {
+
 
         if (element == null) {
             return new NullType();
@@ -52,7 +56,7 @@ public class CauchUtils {
             } else if (element.getAsJsonPrimitive().isString()) {
 
                 try {
-                    Date testIfDate = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss", Locale.ENGLISH).parse(element.getAsString());
+                    Date testIfDate = new SimpleDateFormat(CouchDBConnector.getInstance().fileProperties.getProperty("dataFormt"), Locale.ENGLISH).parse(element.getAsString());
                     return testIfDate;
                 } catch (ParseException e) {
                     return element.getAsString();

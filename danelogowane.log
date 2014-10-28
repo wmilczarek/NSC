@@ -1,0 +1,306 @@
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-1 << Date: Tue, 28 Oct 2014 18:38:58 GMT
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-1 << Content-Type: application/json
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-1 << Cache-Control: must-revalidate
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Connection can be kept alive indefinitely
+DEBUG AWT-EventQueue-0 org.apache.http.impl.auth.HttpAuthenticator - Authentication succeeded
+INFO AWT-EventQueue-0 org.lightcouch.CouchDbClient - < Status: 200
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "25[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "{"total_rows":6,"offset":0,"rows":[[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "a3[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "{"id":"1","key":"bigEntity","value":{"_id":"1","_rev":"7-20a025276bcec4db48b36ff245ff129b","nameField":"ssssssssss","smallEntity_id":["a","b"],"type":"bigEntity"}}[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "a7[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << ",[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "{"id":"2","key":"bigEntity","value":{"_id":"2","_rev":"5-934877097d0eddcbaf218ce49d465247","nameField":"sssssssssss","smallEntity_id":["c","d"],"type":"bigEntity"}}[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "8a[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << ",[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "{"id":"a","key":"smallEntity","value":{"_id":"a","_rev":"3-5a7c80d34b9e2d7f054a40c375fc4f06","nameField":"kjiuy","type":"smallEntity"}}[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "8a[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << ",[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "{"id":"b","key":"smallEntity","value":{"_id":"b","_rev":"2-1b9fcc330f2651673a0bbf78cdfa905c","nameField":"kjiuy","type":"smallEntity"}}[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "8b[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << ",[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "{"id":"c","key":"smallEntity","value":{"_id":"c","_rev":"2-ed813960e5b2c9ccc014ad82bf1ea7a8","nameField":"qwerty","type":"smallEntity"}}[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "8e[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << ",[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "{"id":"d","key":"smallEntity","value":{"_id":"d","_rev":"3-e1ecf91b370bd7162da686abc98a20f2","nameField":"qwertyuio","type":"smallEntity"}}[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "4[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "]}[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "1[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "[\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "0[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-1 << "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.PoolingHttpClientConnectionManager - Connection [id: 1][route: {}->http://127.0.0.1:5984] can be kept alive indefinitely
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.PoolingHttpClientConnectionManager - Connection released: [id: 1][route: {}->http://127.0.0.1:5984][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+INFO AWT-EventQueue-0 org.lightcouch.CouchDbClient - > GET/arrarefid
+DEBUG AWT-EventQueue-0 org.apache.http.client.protocol.RequestAddCookies - CookieSpec selected: best-match
+DEBUG AWT-EventQueue-0 org.apache.http.client.protocol.RequestAuthCache - Re-using cached 'basic' auth scheme for http://127.0.0.1:5984
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.PoolingHttpClientConnectionManager - Connection request: [route: {}->http://127.0.0.1:5984][total kept alive: 0; route allocated: 0 of 2; total allocated: 0 of 20]
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.PoolingHttpClientConnectionManager - Connection leased: [id: 2][route: {}->http://127.0.0.1:5984][total kept alive: 0; route allocated: 1 of 2; total allocated: 1 of 20]
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Opening connection {}->http://127.0.0.1:5984
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.HttpClientConnectionOperator - Connecting to /127.0.0.1:5984
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.HttpClientConnectionOperator - Connection established 127.0.0.1:4879<->127.0.0.1:5984
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Executing request GET /arrarefid HTTP/1.1
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Target auth state: CHALLENGED
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Proxy auth state: UNCHALLENGED
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-2 >> GET /arrarefid HTTP/1.1
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-2 >> Accept: application/json
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-2 >> Host: 127.0.0.1:5984
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-2 >> Connection: Keep-Alive
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-2 >> User-Agent: Apache-HttpClient/4.3.3 (java 1.5)
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-2 >> Accept-Encoding: gzip,deflate
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-2 >> Authorization: Basic YWRtaW46YWRtaW4=
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 >> "GET /arrarefid HTTP/1.1[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 >> "Accept: application/json[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 >> "Host: 127.0.0.1:5984[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 >> "Connection: Keep-Alive[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 >> "User-Agent: Apache-HttpClient/4.3.3 (java 1.5)[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 >> "Authorization: Basic YWRtaW46YWRtaW4=[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 >> "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "HTTP/1.1 200 OK[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "Server: CouchDB/1.6.1 (Erlang OTP/R16B02)[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "Date: Tue, 28 Oct 2014 18:39:07 GMT[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "Content-Type: application/json[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "Content-Length: 236[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "Cache-Control: must-revalidate[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-2 << HTTP/1.1 200 OK
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-2 << Server: CouchDB/1.6.1 (Erlang OTP/R16B02)
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-2 << Date: Tue, 28 Oct 2014 18:39:07 GMT
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-2 << Content-Type: application/json
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-2 << Content-Length: 236
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-2 << Cache-Control: must-revalidate
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Connection can be kept alive indefinitely
+DEBUG AWT-EventQueue-0 org.apache.http.impl.auth.HttpAuthenticator - Authentication succeeded
+INFO AWT-EventQueue-0 org.lightcouch.CouchDbClient - < Status: 200
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "{"db_name":"arrarefid","doc_count":7,"doc_del_count":0,"update_seq":23,"purge_seq":0,"compact_running":false,"disk_size":90216,"data_size":1745,"instance_start_time":"1414520169756610","disk_format_version":6,"committed_update_seq":23}[\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.PoolingHttpClientConnectionManager - Connection [id: 2][route: {}->http://127.0.0.1:5984] can be kept alive indefinitely
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.PoolingHttpClientConnectionManager - Connection released: [id: 2][route: {}->http://127.0.0.1:5984][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+INFO AWT-EventQueue-0 org.lightcouch.CouchDbClient - > GET/arrarefid/_design/type/_view/type
+DEBUG AWT-EventQueue-0 org.apache.http.client.protocol.RequestAddCookies - CookieSpec selected: best-match
+DEBUG AWT-EventQueue-0 org.apache.http.client.protocol.RequestAuthCache - Re-using cached 'basic' auth scheme for http://127.0.0.1:5984
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.PoolingHttpClientConnectionManager - Connection request: [route: {}->http://127.0.0.1:5984][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.PoolingHttpClientConnectionManager - Connection leased: [id: 2][route: {}->http://127.0.0.1:5984][total kept alive: 0; route allocated: 1 of 2; total allocated: 1 of 20]
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Stale connection check
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "[read] I/O error: Read timed out"
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Executing request GET /arrarefid/_design/type/_view/type HTTP/1.1
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Target auth state: CHALLENGED
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Proxy auth state: UNCHALLENGED
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-2 >> GET /arrarefid/_design/type/_view/type HTTP/1.1
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-2 >> Accept: application/json
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-2 >> Host: 127.0.0.1:5984
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-2 >> Connection: Keep-Alive
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-2 >> User-Agent: Apache-HttpClient/4.3.3 (java 1.5)
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-2 >> Accept-Encoding: gzip,deflate
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-2 >> Authorization: Basic YWRtaW46YWRtaW4=
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 >> "GET /arrarefid/_design/type/_view/type HTTP/1.1[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 >> "Accept: application/json[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 >> "Host: 127.0.0.1:5984[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 >> "Connection: Keep-Alive[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 >> "User-Agent: Apache-HttpClient/4.3.3 (java 1.5)[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 >> "Authorization: Basic YWRtaW46YWRtaW4=[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 >> "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "HTTP/1.1 200 OK[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "Transfer-Encoding: chunked[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "Server: CouchDB/1.6.1 (Erlang OTP/R16B02)[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "ETag: "3Z0EAV4273DIGD1O80HC3IUKF"[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "Date: Tue, 28 Oct 2014 18:39:07 GMT[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "Content-Type: application/json[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "Cache-Control: must-revalidate[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-2 << HTTP/1.1 200 OK
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-2 << Transfer-Encoding: chunked
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-2 << Server: CouchDB/1.6.1 (Erlang OTP/R16B02)
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-2 << ETag: "3Z0EAV4273DIGD1O80HC3IUKF"
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-2 << Date: Tue, 28 Oct 2014 18:39:07 GMT
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-2 << Content-Type: application/json
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-2 << Cache-Control: must-revalidate
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Connection can be kept alive indefinitely
+DEBUG AWT-EventQueue-0 org.apache.http.impl.auth.HttpAuthenticator - Authentication succeeded
+INFO AWT-EventQueue-0 org.lightcouch.CouchDbClient - < Status: 200
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "25[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "{"total_rows":6,"offset":0,"rows":[[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "a3[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "{"id":"1","key":"bigEntity","value":{"_id":"1","_rev":"7-20a025276bcec4db48b36ff245ff129b","nameField":"ssssssssss","smallEntity_id":["a","b"],"type":"bigEntity"}}[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "a7[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << ",[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "{"id":"2","key":"bigEntity","value":{"_id":"2","_rev":"5-934877097d0eddcbaf218ce49d465247","nameField":"sssssssssss","smallEntity_id":["c","d"],"type":"bigEntity"}}[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "8a[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << ",[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "{"id":"a","key":"smallEntity","value":{"_id":"a","_rev":"3-5a7c80d34b9e2d7f054a40c375fc4f06","nameField":"kjiuy","type":"smallEntity"}}[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "8a[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << ",[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "{"id":"b","key":"smallEntity","value":{"_id":"b","_rev":"2-1b9fcc330f2651673a0bbf78cdfa905c","nameField":"kjiuy","type":"smallEntity"}}[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "8b[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << ",[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "{"id":"c","key":"smallEntity","value":{"_id":"c","_rev":"2-ed813960e5b2c9ccc014ad82bf1ea7a8","nameField":"qwerty","type":"smallEntity"}}[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "8e[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << ",[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "{"id":"d","key":"smallEntity","value":{"_id":"d","_rev":"3-e1ecf91b370bd7162da686abc98a20f2","nameField":"qwertyuio","type":"smallEntity"}}[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "4[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "]}[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "1[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "[\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "0[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-2 << "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.PoolingHttpClientConnectionManager - Connection [id: 2][route: {}->http://127.0.0.1:5984] can be kept alive indefinitely
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.PoolingHttpClientConnectionManager - Connection released: [id: 2][route: {}->http://127.0.0.1:5984][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+INFO AWT-EventQueue-0 org.lightcouch.CouchDbClient - > GET/arrarefid
+DEBUG AWT-EventQueue-0 org.apache.http.client.protocol.RequestAddCookies - CookieSpec selected: best-match
+DEBUG AWT-EventQueue-0 org.apache.http.client.protocol.RequestAuthCache - Re-using cached 'basic' auth scheme for http://127.0.0.1:5984
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.PoolingHttpClientConnectionManager - Connection request: [route: {}->http://127.0.0.1:5984][total kept alive: 0; route allocated: 0 of 2; total allocated: 0 of 20]
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.PoolingHttpClientConnectionManager - Connection leased: [id: 0][route: {}->http://127.0.0.1:5984][total kept alive: 0; route allocated: 1 of 2; total allocated: 1 of 20]
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Opening connection {}->http://127.0.0.1:5984
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.HttpClientConnectionOperator - Connecting to /127.0.0.1:5984
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.HttpClientConnectionOperator - Connection established 127.0.0.1:4891<->127.0.0.1:5984
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Executing request GET /arrarefid HTTP/1.1
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Target auth state: CHALLENGED
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Proxy auth state: UNCHALLENGED
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 >> GET /arrarefid HTTP/1.1
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 >> Accept: application/json
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 >> Host: 127.0.0.1:5984
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 >> Connection: Keep-Alive
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 >> User-Agent: Apache-HttpClient/4.3.3 (java 1.5)
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 >> Accept-Encoding: gzip,deflate
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 >> Authorization: Basic YWRtaW46YWRtaW4=
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 >> "GET /arrarefid HTTP/1.1[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 >> "Accept: application/json[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 >> "Host: 127.0.0.1:5984[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 >> "User-Agent: Apache-HttpClient/4.3.3 (java 1.5)[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 >> "Authorization: Basic YWRtaW46YWRtaW4=[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 >> "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "Server: CouchDB/1.6.1 (Erlang OTP/R16B02)[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "Date: Tue, 28 Oct 2014 18:42:18 GMT[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "Content-Type: application/json[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "Content-Length: 236[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "Cache-Control: must-revalidate[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 << HTTP/1.1 200 OK
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 << Server: CouchDB/1.6.1 (Erlang OTP/R16B02)
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 << Date: Tue, 28 Oct 2014 18:42:18 GMT
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 << Content-Type: application/json
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 << Content-Length: 236
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 << Cache-Control: must-revalidate
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Connection can be kept alive indefinitely
+DEBUG AWT-EventQueue-0 org.apache.http.impl.auth.HttpAuthenticator - Authentication succeeded
+INFO AWT-EventQueue-0 org.lightcouch.CouchDbClient - < Status: 200
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "{"db_name":"arrarefid","doc_count":7,"doc_del_count":0,"update_seq":23,"purge_seq":0,"compact_running":false,"disk_size":90216,"data_size":1745,"instance_start_time":"1414520169756610","disk_format_version":6,"committed_update_seq":23}[\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.PoolingHttpClientConnectionManager - Connection [id: 0][route: {}->http://127.0.0.1:5984] can be kept alive indefinitely
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.PoolingHttpClientConnectionManager - Connection released: [id: 0][route: {}->http://127.0.0.1:5984][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+INFO AWT-EventQueue-0 org.lightcouch.CouchDbClient - > GET/arrarefid/_design/type/_view/type
+DEBUG AWT-EventQueue-0 org.apache.http.client.protocol.RequestAddCookies - CookieSpec selected: best-match
+DEBUG AWT-EventQueue-0 org.apache.http.client.protocol.RequestAuthCache - Re-using cached 'basic' auth scheme for http://127.0.0.1:5984
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.PoolingHttpClientConnectionManager - Connection request: [route: {}->http://127.0.0.1:5984][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.PoolingHttpClientConnectionManager - Connection leased: [id: 0][route: {}->http://127.0.0.1:5984][total kept alive: 0; route allocated: 1 of 2; total allocated: 1 of 20]
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Stale connection check
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "[read] I/O error: Read timed out"
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Executing request GET /arrarefid/_design/type/_view/type HTTP/1.1
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Target auth state: CHALLENGED
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Proxy auth state: UNCHALLENGED
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 >> GET /arrarefid/_design/type/_view/type HTTP/1.1
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 >> Accept: application/json
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 >> Host: 127.0.0.1:5984
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 >> Connection: Keep-Alive
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 >> User-Agent: Apache-HttpClient/4.3.3 (java 1.5)
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 >> Accept-Encoding: gzip,deflate
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 >> Authorization: Basic YWRtaW46YWRtaW4=
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 >> "GET /arrarefid/_design/type/_view/type HTTP/1.1[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 >> "Accept: application/json[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 >> "Host: 127.0.0.1:5984[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 >> "User-Agent: Apache-HttpClient/4.3.3 (java 1.5)[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 >> "Authorization: Basic YWRtaW46YWRtaW4=[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 >> "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "Transfer-Encoding: chunked[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "Server: CouchDB/1.6.1 (Erlang OTP/R16B02)[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "ETag: "3Z0EAV4273DIGD1O80HC3IUKF"[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "Date: Tue, 28 Oct 2014 18:42:19 GMT[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "Content-Type: application/json[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "Cache-Control: must-revalidate[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 << HTTP/1.1 200 OK
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 << Transfer-Encoding: chunked
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 << Server: CouchDB/1.6.1 (Erlang OTP/R16B02)
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 << ETag: "3Z0EAV4273DIGD1O80HC3IUKF"
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 << Date: Tue, 28 Oct 2014 18:42:19 GMT
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 << Content-Type: application/json
+DEBUG AWT-EventQueue-0 org.apache.http.headers - http-outgoing-0 << Cache-Control: must-revalidate
+DEBUG AWT-EventQueue-0 org.apache.http.impl.execchain.MainClientExec - Connection can be kept alive indefinitely
+DEBUG AWT-EventQueue-0 org.apache.http.impl.auth.HttpAuthenticator - Authentication succeeded
+INFO AWT-EventQueue-0 org.lightcouch.CouchDbClient - < Status: 200
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "25[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "{"total_rows":6,"offset":0,"rows":[[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "a3[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "{"id":"1","key":"bigEntity","value":{"_id":"1","_rev":"7-20a025276bcec4db48b36ff245ff129b","nameField":"ssssssssss","smallEntity_id":["a","b"],"type":"bigEntity"}}[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "a7[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << ",[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "{"id":"2","key":"bigEntity","value":{"_id":"2","_rev":"5-934877097d0eddcbaf218ce49d465247","nameField":"sssssssssss","smallEntity_id":["c","d"],"type":"bigEntity"}}[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "8a[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << ",[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "{"id":"a","key":"smallEntity","value":{"_id":"a","_rev":"3-5a7c80d34b9e2d7f054a40c375fc4f06","nameField":"kjiuy","type":"smallEntity"}}[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "8a[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << ",[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "{"id":"b","key":"smallEntity","value":{"_id":"b","_rev":"2-1b9fcc330f2651673a0bbf78cdfa905c","nameField":"kjiuy","type":"smallEntity"}}[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "8b[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << ",[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "{"id":"c","key":"smallEntity","value":{"_id":"c","_rev":"2-ed813960e5b2c9ccc014ad82bf1ea7a8","nameField":"qwerty","type":"smallEntity"}}[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "8e[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << ",[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "{"id":"d","key":"smallEntity","value":{"_id":"d","_rev":"3-e1ecf91b370bd7162da686abc98a20f2","nameField":"qwertyuio","type":"smallEntity"}}[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "4[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "]}[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "1[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "[\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "0[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.wire - http-outgoing-0 << "[\r][\n]"
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.PoolingHttpClientConnectionManager - Connection [id: 0][route: {}->http://127.0.0.1:5984] can be kept alive indefinitely
+DEBUG AWT-EventQueue-0 org.apache.http.impl.conn.PoolingHttpClientConnectionManager - Connection released: [id: 0][route: {}->http://127.0.0.1:5984][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - NotRelationalField
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - _rev VARCHAR(120)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - nameField VARCHAR(34)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - bigEntity_PK VARCHAR(34)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - _rev VARCHAR(120)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - nameField VARCHAR(34)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - smallEntity_PK VARCHAR(34)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - bigEntity_id VARCHAR(34)
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - end creating schema script
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - smallEntityset reference to table bigEntity_id
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - End reference script generation
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - _rev '7-20a025276bcec4db48b36ff245ff129b'
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - nameField 'ssssssssss'
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - bigEntity_PK '1'
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - _rev '5-934877097d0eddcbaf218ce49d465247'
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - nameField 'sssssssssss'
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - bigEntity_PK '2'
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - smallEntity_PK 'a'
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - _rev '3-5a7c80d34b9e2d7f054a40c375fc4f06'
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - nameField 'kjiuy'
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - bigEntity_id '1'
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - smallEntity_PK 'c'
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - _rev '2-ed813960e5b2c9ccc014ad82bf1ea7a8'
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - nameField 'qwerty'
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - bigEntity_id '2'
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - smallEntity_PK 'b'
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - _rev '2-1b9fcc330f2651673a0bbf78cdfa905c'
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - nameField 'kjiuy'
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - bigEntity_id '1'
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - smallEntity_PK 'd'
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - _rev '3-e1ecf91b370bd7162da686abc98a20f2'
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - nameField 'qwertyuio'
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - bigEntity_id '2'
+DEBUG AWT-EventQueue-0 Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations - End insert script generation

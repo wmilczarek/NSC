@@ -38,7 +38,7 @@ public enum SqlFieldType {
         } else if (this == SqlFieldType.DateTime) {
             return "DATETIME";
         } else if (this == SqlFieldType.VarcharShort) {
-            return "VARCHAR(24)";
+            return "VARCHAR(34)";
         } else if (this == SqlFieldType.VarcharLong) {
             return "VARCHAR(120)";
         } else if (this == SqlFieldType.Binary){

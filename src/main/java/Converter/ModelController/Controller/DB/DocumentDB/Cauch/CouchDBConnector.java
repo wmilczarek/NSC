@@ -1,6 +1,6 @@
 package Converter.ModelController.Controller.DB.DocumentDB.Cauch;
 
-import Converter.ViewModel.DocumentTypesDB;
+import Converter.ModelController.DocumentTypesDB;
 import com.couchbase.client.CouchbaseClient;
 import org.lightcouch.CouchDbClient;
 
@@ -16,10 +16,21 @@ public class CouchDBConnector {
 
     private static CouchbaseClient mongoClient;
 
-  //  private static DB MongoDB;
+    InputStream inputStream = getClass().getClassLoader().getResourceAsStream("couchdb.properties");
+    Properties fileProperties = new Properties();
 
 
+    public CouchDBConnector() {
 
+        {
+            try {
+                fileProperties.load(inputStream);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
 
     public static CouchDBConnector getInstance() {
 
@@ -27,16 +38,8 @@ public class CouchDBConnector {
     }
 
     public CouchDbClient getCauchClient(DocumentTypesDB documentTypsDB, String bucketName) throws URISyntaxException, IOException {
-        Properties prop = new Properties();
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("mongodb.properties");
 
-        try {
-            prop.load(inputStream);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        CouchDbClient dbClient = new CouchDbClient(bucketName, true, "http", documentTypsDB.getHost(), documentTypsDB.getDefPort(), prop.getProperty("username"), prop.getProperty("password"));
+        CouchDbClient dbClient = new CouchDbClient(bucketName, true, "http", documentTypsDB.getHost(), documentTypsDB.getDefPort(), fileProperties.getProperty("username"), fileProperties.getProperty("password"));
         return dbClient;
     }
 

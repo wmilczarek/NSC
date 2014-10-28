@@ -1,8 +1,8 @@
 package Converter.ModelController.Controller.DB.DocumentDB;
 
-import Converter.ConverterMetaDataModels.MongoModel.TranslationDataBase;
+import Converter.ConverterMetaDataModels.DataModel.TranslationDataBase;
 import Converter.ModelController.Controller.DB.Relational.Operations.SqlPrintOperations;
-import Converter.ViewModel.DocumentTypesDB;
+import Converter.ModelController.DocumentTypesDB;
 
 import java.net.UnknownHostException;
 import java.sql.SQLException;
@@ -29,7 +29,9 @@ public abstract class DocumentDataBaseOperations {
         return null;
     }
 
-    public abstract List<String> loadDataBase(String dbName) throws UnknownHostException, SQLException;
+    public abstract void loadDataBase(DocumentTypesDB documentTypesDB, String dbName);
+
+    public abstract void loadDataBase(String dbName);
 
     //public abstract List<String> ResolveAndGetFields(String dbName, String EntityName) throws UnknownHostException;
 
@@ -43,6 +45,8 @@ public abstract class DocumentDataBaseOperations {
     public abstract List<List<String>> showFields(String dbName, String EntityName) throws UnknownHostException;
 
     public abstract void loadIntoMemory(String dbName);
+
+    public abstract void loadIntoMemory(DocumentTypesDB type, String dbName);
 
 
 }

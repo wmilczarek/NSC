@@ -1,7 +1,7 @@
 package Converter.ModelController.Controller.DB.Relational.Operations;
 
 import Converter.ModelController.Controller.DB.Translator.DocumentDBToSQL;
-import Converter.ConverterMetaDataModels.MongoModel.*;
+import Converter.ConverterMetaDataModels.DataModel.*;
 import Converter.ModelController.Relations;
 import Converter.ModelController.SqlFieldType;
 import org.apache.log4j.Logger;
@@ -37,14 +37,18 @@ public class SqlPrintOperations {
         fileProperties = new Properties();
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream("sql.properties");
 
+        try {
+            fileProperties.load(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void createEntitiesSchemaScript(TranslationDataBase DataBase) throws SQLException {
 
-
         StringBuilder entityQuery = new StringBuilder("CREATE DATABASE " + DataBase.getDBname() + ";\n");
 
-        //create Entities for X Entities get Y FIeld and assembly SQL Queary
         for (TranslationEntitySchema entity : DataBase.getEntitiesSchema()) {
 
             entityQuery.append("CREATE TABLE " + entity.getMetaDataObjectName() + " ( ");
@@ -59,7 +63,7 @@ public class SqlPrintOperations {
 
                 if (field.getRelationProperties().getRelations() == Relations.PrimaryKey) {
 
-                    entityQuery.append(Relations.PrimaryKey.toString() + "(" + field.getMetaDataObjectName() + "), ");
+                    entityQuery.append(Relations.PrimaryKey.toString() + "(" + field.getMetaDataObjectName() + "),");
                 }
             }
 

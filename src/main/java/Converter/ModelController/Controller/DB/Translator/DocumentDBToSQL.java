@@ -144,7 +144,7 @@ public class DocumentDBToSQL {
             return SqlFieldType.Text;
 
         } else if (type == SqlFieldType.Binary) {
-//!
+
         } else {
             //TODO: nowe pole jesli bardzo sprzeczne.
 
@@ -161,7 +161,7 @@ public class DocumentDBToSQL {
             return SqlFieldType.VarcharShort;
 
         } else if (type == SqlFieldType.Binary) {
-//!
+
         } else if (type == SqlFieldType.Text) {
             //TODO: nowe pole jesli bardzo sprzeczne.
 
@@ -182,7 +182,7 @@ public class DocumentDBToSQL {
             return SqlFieldType.VarcharLong;
 
         } else if (type == SqlFieldType.Binary) {
-//!
+
         } else if (type == SqlFieldType.Text) {
             //TODO: nowe pole jesli bardzo sprzeczne.
 

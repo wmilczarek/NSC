@@ -1,11 +1,9 @@
 package Converter.ModelController.Controller.DB.DocumentDB.Cauch;
 
 
-import Converter.ConverterMetaDataModels.MongoModel.DocumentRowMetaData;
-import Converter.ConverterMetaDataModels.MongoModel.TranslationDataBase;
-import Converter.ConverterMetaDataModels.MongoModel.TranslationEntitySchema;
-import Converter.ConverterMetaDataModels.MongoModel.TranslationFieldSchema;
+import Converter.ConverterMetaDataModels.DataModel.*;
 import Converter.ModelController.Controller.DB.DocumentDB.DocumentDataBaseOperations;
+import Converter.ModelController.DocumentTypesDB;
 import Converter.ModelController.Relations;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -20,10 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 import static Converter.ModelController.Controller.DB.DocumentDB.Cauch.CauchUtils.resolvePreMetaDataTypes;
-
-import static Converter.ModelController.Controller.DB.DocumentDB.CommonOperationUtils.changeName;
-import static Converter.ModelController.Controller.DB.DocumentDB.CommonOperationUtils.dataArrayRelationNormalization;
-import static Converter.ModelController.Controller.DB.DocumentDB.CommonOperationUtils.findOrCreateMetaData;
+import static Converter.ModelController.Controller.DB.DocumentDB.CommonOperationUtils.*;
 
 
 public class CouchDataBaseOperations extends DocumentDataBaseOperations {
@@ -39,28 +34,32 @@ public class CouchDataBaseOperations extends DocumentDataBaseOperations {
 
         List<String> test = new ArrayList<String>();
 
-        test.add("watertankdb");
 
         return test;
     }
 
     @Override
-    public List<String> loadDataBase(String dbName) throws SQLException {
+    public void loadDataBase(DocumentTypesDB documentTypesDB, String dbName) {
 
-        dataBase = new TranslationDataBase();
-        loadIntoMemory(dbName);
+        dataBase = new TranslationDataBase(dbName);
+        loadIntoMemory(documentTypesDB, dbName);
 
-        changeName(dataBase);
 
 
         dataArrayRelationNormalization(dataBase);
+        referenceArrayRelationNormalization(this.dataBase);
         dataBase.translateFieldsOfAllEntetiesToSqlTypes();
+        changeName(dataBase);
+        try {
+            printMetaDataToSQL();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
+    @Override
+    public void loadDataBase(String dbName) {
 
-        printMetaDataToSQL();
-
-
-        return null;
     }
 
     @Override
@@ -71,9 +70,14 @@ public class CouchDataBaseOperations extends DocumentDataBaseOperations {
     @Override
     public void loadIntoMemory(String dbName) {
 
+    }
+
+    @Override
+    public void loadIntoMemory(DocumentTypesDB documentTypesDB, String dbName) {
+
         List<JsonObject> list = null;
         try {
-            list = CouchDBConnector.getInstance().getCauchClient(null, null).view("type/type").query(JsonObject.class);
+            list = CouchDBConnector.getInstance().getCauchClient(documentTypesDB, dbName).view("type/type").query(JsonObject.class);
         } catch (URISyntaxException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -158,7 +162,7 @@ public class CouchDataBaseOperations extends DocumentDataBaseOperations {
             DocumentRowMetaData documentRowMetaData = new DocumentRowMetaData();
             documentRowMetaData.setFieldValue("_id", currentEntityField.getIncrementAutoPrimaryKey());
             mongoFieldSchema.keyChecker();
-            getObjectsDataAndCreateSchema( dbObject, fieldName, documentRowMetaData);
+            getObjectsDataAndCreateSchema(dbObject, fieldName, documentRowMetaData);
 
 
         } else {
@@ -177,7 +181,6 @@ public class CouchDataBaseOperations extends DocumentDataBaseOperations {
     }
 
 
-
     private Object tryToGetForeginKeyOfSubDocument(Map.Entry<String, JsonElement> currentField) {
 
         try {
@@ -191,16 +194,20 @@ public class CouchDataBaseOperations extends DocumentDataBaseOperations {
     //3 mozliwosci
     private void handleArrayAsEntity(String typeName, String fatherEntityName, JsonElement fatherId, JsonArray jsonArray) {
 
+        IsArray arrayType = IsArray.DataArry;
         String suffix = "_value";
         String newEntityName = typeName;
 
         if (typeName.endsWith("_id")) {
+            arrayType = IsArray.ReferenceArray;
             suffix = "_id";
+            typeName = typeName.replace("_id","");
             newEntityName = fatherEntityName + "_" + typeName;
         }
 
+
         //Spojne Typy
-        if (jsonArray.get(0).isJsonObject()) {
+        if (jsonArray.size() > 0 && jsonArray.get(0).isJsonObject()) {
 
 
             handleArrayOfObjects(fatherEntityName, fatherId, jsonArray, newEntityName);
@@ -213,7 +220,9 @@ public class CouchDataBaseOperations extends DocumentDataBaseOperations {
         cauchIdFieldSchema.setMetaDataType(resolvePreMetaDataTypes(fatherId));
         cauchFieldSchema.keyChecker();
         cauchIdFieldSchema.keyChecker();
-        couchEntitySchema.setFromArray(true);
+        arrayType.setFrom(fatherEntityName);
+        arrayType.setDestiny(typeName);
+        couchEntitySchema.setFromArray(arrayType);
 
         for (JsonElement element : jsonArray) {
             DocumentRowMetaData documentRowMetaData = new DocumentRowMetaData();

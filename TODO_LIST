@@ -1,27 +1,3 @@
-1. Wieloznacznosc znacznosc -> tablica pole ; M C
-2. manyToMany M C array on array
-3. equale    M C
-4. many to many arrayObjects M C
-5. Upagrade Object refering for Couch. -> C!!
+usuwanie
 
-
-
-====== Maybe baby
-1.A Multi Typyes
-
-
-====== Dev upgrades
-Log4J
-
-
-
-
-
-
-
-
-
-============================== na 2 wrzesnia ==========
-Ujednolicic typu modelu DONE
-refactoring
-podniesienie couchDB to satanu mongo
+przecinek po pk

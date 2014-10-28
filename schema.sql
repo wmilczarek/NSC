@@ -1,2 +1,3 @@
-CREATE DATABASE null;
-CREATE TABLE water_tank ( owner VARCHAR(24) ,refill_date DATETIME ,storage_location INT ,size_in_liters DOUBLE ,schedule_refill DATETIME ,_rev VARCHAR(120) ,water_tank_PK VARCHAR(24) ,PRIMARY KEY(water_tank_PK), ); 
+CREATE DATABASE arrarefid;
+CREATE TABLE bigEntity ( _rev VARCHAR(120) ,nameField VARCHAR(34) ,bigEntity_PK VARCHAR(34) ,PRIMARY KEY(bigEntity_PK) ); 
+CREATE TABLE smallEntity ( _rev VARCHAR(120) ,nameField VARCHAR(34) ,smallEntity_PK VARCHAR(34) ,PRIMARY KEY(smallEntity_PK) bigEntity_id VARCHAR(34)  ); 
