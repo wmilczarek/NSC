@@ -43,13 +43,11 @@ public class CouchDataBaseOperations extends DocumentDataBaseOperations {
 
         dataBase = new TranslationDataBase(dbName);
         loadIntoMemory(documentTypesDB, dbName);
-
-
-
         dataArrayRelationNormalization(dataBase);
         referenceArrayRelationNormalization(this.dataBase);
         dataBase.translateFieldsOfAllEntetiesToSqlTypes();
         changeName(dataBase);
+
         try {
             printMetaDataToSQL();
         } catch (SQLException e) {

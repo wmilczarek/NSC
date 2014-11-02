@@ -1,0 +1,25 @@
+/* 0 */
+{
+    "_id" : ObjectId("537c64c3662dae6dd5f23450"),
+    "title" : "MongoDB: The Definitive Guide",
+    "author" : [
+        "Kristina Chodorow",
+        "Mike Dirolf"
+    ],
+    "published_date" : ISODate("2010-09-25T05:44:20.201Z"),
+    "pages" : 216,
+    "language" : "English"
+}
+
+/* 1 */
+{
+    "_id" : ObjectId("537c64c3662dae6dd5f23451"),
+    "title" : "50 Tips and Tricks for MongoDB Developer",
+    "published_date" : ISODate("2011-05-07T01:26:20.201Z"),
+    "pages" : NumberLong(1099511600000),
+    "language" : "English",
+    "author" : [
+        "Kristina Chodorow",
+        "Mike Dirolf"
+    ]
+}

@@ -1,0 +1,88 @@
+/* 0 */
+{
+    "_id" : ObjectId("5442894ef96552d98912cf8c"),
+    "name" : "Alaskan IPA",
+    "abv" : 6.2,
+    "ibu" : 0,
+    "srm" : 0,
+    "upc" : 0,
+    "brewery_id" : 2,
+    "updated" : "2010-07-22 20:00:20",
+    "description" : "India Pale Ales are characterized by intense hop flavor and aroma accompanied by higher alcohol content. This style possesses medium maltiness and body while also being crisp and dry. Citrus flavors and aromas are moderate to very strong.\r\n\r\nAlaskan IPA is honey gold in color with a fruity, citrus aroma. An enticing blend of hops and our dry hopping process, in which hops are added directly to tanks during fermentation, give this brew a very intense, complex aromatic character with a refreshing hop finish.\r\n\r\nAlaskan IPA is made from glacier-fed water and a generous blend of the finest quality European and Pacific Northwest hop varieties and premium two-row and specialty malts. Our water originates in the 1,500-square-mile Juneau Ice Field and from more than 90 inches of rainfall each year.",
+    "style" : "American-Style India Pale Ale",
+    "category" : "North American Ale"
+}
+
+/* 1 */
+{
+    "_id" : ObjectId("5442895df96552d98912cf8d"),
+    "name" : "Alaskan Barley Wine Ale",
+    "abv" : 10.4,
+    "ibu" : 0,
+    "srm" : 0,
+    "upc" : 0,
+    "brewery_id" : 2,
+    "updated" : "2010-07-22 20:00:20",
+    "description" : "Alaskan Barley Wine is produced in small batches each year. Typically this higher alcohol beverage is brewed in the spring, cellared in the tunnels of the Alaska-Juneau Gold Mine for the summer and retrieved in time for its release at the Great Alaska Beer and Barley Wine Festival in January. The cool tunnels of the mine shaft provide natural refrigeration and a prime environment for the aging process. \r\n\r\nLike a fine wine, Alaskan Barley Wine can be aged for years. The bottling of the 2007 vintage of Alaskan Barley Wine will allow individuals to age it to their liking. “We figured we’d leave it up to individuals as to how long to age their Alaskan Barley Wine,” said Quality Assurance Analyst Ryan Harvey. “Some people like barley wines fresh, and others store it for years.”",
+    "style" : "American-Style Barley Wine Ale",
+    "category" : "North American Ale"
+}
+
+/* 2 */
+{
+    "_id" : ObjectId("5442896ff96552d98912cf8e"),
+    "name" : "Affligem Dubbel",
+    "abv" : 6.8,
+    "ibu" : 0,
+    "srm" : 0,
+    "upc" : 0,
+    "brewery_id" : 1,
+    "updated" : "2010-07-22 20:00:20",
+    "description" : "A reddish-brown abbey ale brewed with dark malts. The secondary fermentation gives a fruity aroma and a unique, spicy character with a distinctive aftertaste. Secondary fermentation in the bottle. Contains barley malt.",
+    "style" : "Belgian-Style Dubbel",
+    "category" : "Belgian and French Ale"
+}
+
+///////////
+
+/* 0 */
+{
+    "_id" : 1,
+    "name" : "Affligem Brouwerij",
+    "city" : "Opwijk",
+    "state" : "",
+    "code" : "",
+    "country" : "Belgium",
+    "phone" : "052/35 83 57",
+    "website" : "http://www.affligembeer.be/",
+    "updated" : "2010-07-22 20:00:20",
+    "description" : "",
+    "address" : [],
+    "geo" : {
+        "accuracy" : "APPROXIMATE",
+        "lat" : 50.9699,
+        "lon" : 4.1892
+    }
+}
+
+/* 1 */
+{
+    "_id" : 2,
+    "name" : "Alaskan Brewing",
+    "city" : "Juneau",
+    "state" : "Alaska",
+    "code" : "99801",
+    "country" : "United States",
+    "phone" : "1-907-780-5866",
+    "website" : "http://www.alaskanbeer.com/",
+    "updated" : "2010-07-22 20:00:20",
+    "description" : "The popularity of our beers has led to heroic efforts to keep up with the demand. We claim the unofficial record for production on a 10 barrel brewing system, with a whopping 42 batches in a single week. The addition of a new, 100-barrel brewhouse in 1995, and a Sankey-type keg system installed the following year, finally made it possible for us to serve the entire Pacific Northwest and later the Desert Southwest.  Brewing beer in Alaska isn't easy. In the coastal community of Juneau, without road connections to the lower 48 states, everything arrives and leaves by water or air, and the weather always has the last word.  We have learned to coordinate shipments for barges that couldn't dock in high winds, ferries that broke down, airplanes that overheaded, and trucks delayed by spring thaws that turned the roads to mush. We learned which suppliers were willing to airlift supplies and spare parts on short notice (at $1 per pound). We mastered wiring, plumbing, waste disposal and air quality control. We discovered that, if you had to, you could pour concrete in January by thawing the ground with heaters. Ah, but it all seems worthwhile if you can go home to a dinner of king crab or fresh halibut.",
+    "address" : [
+        "5429 Shaune Drive"
+    ],
+    "geo" : {
+        "accuracy" : "ROOFTOP",
+        "lat" : 58.3573,
+        "lon" : -134.49
+    }
+}

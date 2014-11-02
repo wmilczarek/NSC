@@ -58,6 +58,7 @@ public class MongoDataBaseOperations extends DocumentDataBaseOperations {
         referenceArrayRelationNormalization(this.dataBase);
         changeName(this.dataBase);
         translateFieldsOfAllEnteties();
+
         try {
             printMetaDataToSQL();
         } catch (SQLException e) {

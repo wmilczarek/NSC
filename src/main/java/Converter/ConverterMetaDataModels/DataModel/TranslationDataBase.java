@@ -68,6 +68,7 @@ public class TranslationDataBase {
         String tableTypeName = tableKeyForIntersection.getFieldName().replace("_id", "");
         String intersectionName = tableTypeName + "_" + array.getMetaDataObjectName();
         // zmiany nazwy starej tablicy aby nie było konfliktów
+        entitiesSchema.remove(array);
         array.setMetaDataObjectName(arrayName + "_temp");
 
         TranslationEntitySchema mongoNewArrayEntity = createNewArrayTable(arrayName, oldArrayField);
@@ -76,7 +77,7 @@ public class TranslationDataBase {
 
         //todo: usuwanie
         separeteDataToIntersectionEntity(array, arrayName, mongoNewArrayEntity, mongoNewItersectionEntity);
-        entitiesSchema.remove(array);
+
         this.setEntitiesSchema(entitiesSchema);
     }
 

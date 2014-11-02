@@ -1,0 +1,49 @@
+/* 0 */
+{
+    "_id" : ObjectId("544f952574aa4abcf7e34012"),
+    "id" : 1,
+    "refEntity_id" : [
+        1,
+        2
+    ],
+    "name" : "first"
+}
+
+/* 1 */
+{
+    "_id" : ObjectId("544f957174aa4abcf7e34013"),
+    "id" : 2,
+    "refEntity_id" : [
+        3,
+        4
+    ],
+    "name" : "test"
+}
+
+
+///////////////////////
+
+
+/* 0 */
+{
+    "_id" : 3,
+    "name" : "ref3"
+}
+
+/* 1 */
+{
+    "_id" : 1,
+    "name" : "ref1"
+}
+
+/* 2 */
+{
+    "_id" : 4,
+    "name" : "ref4"
+}
+
+/* 3 */
+{
+    "_id" : 2,
+    "name" : "ref2"
+}

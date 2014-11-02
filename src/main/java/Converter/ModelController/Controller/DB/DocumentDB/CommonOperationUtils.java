@@ -7,7 +7,6 @@ import Converter.ModelController.Relations;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -15,7 +14,6 @@ import java.util.stream.Collectors;
 public class CommonOperationUtils {
 
 
-    //związki wiele do wielu dla tablic danych
     public static void dataArrayRelationNormalization(TranslationDataBase documentDataBase) {
 
         List<TranslationEntitySchema> arrays = ((Set<TranslationEntitySchema>) documentDataBase.getEntitiesSchema()).stream().filter(e -> e.isFromArray() == IsArray.DataArry).collect(Collectors.toList());
@@ -37,11 +35,8 @@ public class CommonOperationUtils {
                 } else {
                     compare.add(value);
                 }
-
             }
-
         }
-
     }
 
     //związki wiele do wielu dla tablic danych
@@ -50,10 +45,7 @@ public class CommonOperationUtils {
         List<TranslationEntitySchema> schemas = ((Set<TranslationEntitySchema>) documentDataBase.getEntitiesSchema()).stream().filter(e -> e.isFromArray() == IsArray.NO).collect(Collectors.toList());
 
         for (TranslationEntitySchema schema : schemas) {
-
-
             Object[] rows = schema.getTranslationMetaDataDocuments().toArray();
-/*            Set<DocumentRowMetaData> sameData = new HashSet<>();*/
 
             for (int i = 0; i < schema.getTranslationMetaDataDocuments().size(); i++) {
 
@@ -102,8 +94,8 @@ public class CommonOperationUtils {
 
             for (DocumentRowMetaData row : array.getTranslationMetaDataDocuments()) {
 
-                DocumentRowMetaData document = translationEntitySchema.getTranslationMetaDataDocuments().stream().filter(e->e.getFieldValue().get("_id").equals(row.getFieldValue().get(array.isFromArray().getDestiny() + "_id"))).collect(Collectors.toList()).get(0);
-                document.setFieldValue( array.isFromArray().getFrom() + "_id",  row.getFieldValue().get(array.isFromArray().getFrom() + "_id"));
+                DocumentRowMetaData document = translationEntitySchema.getTranslationMetaDataDocuments().stream().filter(e -> e.getFieldValue().get("_id").equals(row.getFieldValue().get(array.isFromArray().getDestiny() + "_id"))).collect(Collectors.toList()).get(0);
+                document.setFieldValue(array.isFromArray().getFrom() + "_id", row.getFieldValue().get(array.isFromArray().getFrom() + "_id"));
 
                 translationFieldSchema.setMetaDataType(row.getFieldValue().get(array.isFromArray().getFrom() + "_id"));
                 translationFieldSchema.keyChecker();

@@ -1,0 +1,109 @@
+/* 0 */
+{
+    "_id" : 1,
+    "name" : "Dagger",
+    "player_id" : 1
+}
+
+/* 1 */
+{
+    "_id" : 4,
+    "name" : "Dagger",
+    "player_id" : 2
+}
+
+/* 2 */
+{
+    "_id" : 2,
+    "name" : "Axe",
+    "player_id" : 3
+}
+
+/* 3 */
+{
+    "_id" : 3,
+    "name" : "Glaive_thrower",
+    "player_id" : 1
+}
+
+//////////////
+/* 0 */
+{
+    "_id" : ObjectId("5440032d17c58449f6796d2e"),
+    "experienceWhenKilled" : 44,
+    "hitpoints" : 4726,
+    "itemProbability" : 0.1334419217359576,
+    "name" : "Kelpie"
+}
+
+/* 1 */
+{
+    "_id" : ObjectId("5440032d17c58449f6796d2f"),
+    "experienceWhenKilled" : 52,
+    "hitpoints" : 2117,
+    "itemProbability" : 0.4262684607117837,
+    "name" : "Fuath"
+}
+
+/* 2 */
+{
+    "_id" : ObjectId("5440032d17c58449f6796d30"),
+    "experienceWhenKilled" : 28,
+    "hitpoints" : 3755,
+    "itemProbability" : 0.3114936263477344,
+    "name" : "Bauchan"
+}
+
+/* 3 */
+{
+    "_id" : ObjectId("5440032d17c58449f6796d31"),
+    "experienceWhenKilled" : 29,
+    "hitpoints" : 3510,
+    "itemProbability" : 0.3890593081506691,
+    "name" : "eater"
+}
+
+
+/////////////
+
+/* 0 */
+{
+    "_id" : 1,
+    "experience" : 392,
+    "hitpoints" : 10,
+    "level" : 2,
+    "loggedIn" : true,
+    "name" : "Perry"
+}
+
+/* 1 */
+{
+    "_id" : 2,
+    "experience" : 14746,
+    "hitpoints" : 20210,
+    "level" : 146,
+    "loggedIn" : true,
+    "name" : "Aaron"
+}
+
+/* 2 */
+{
+    "_id" : 3,
+    "experience" : 14746,
+    "hitpoints" : 20210,
+    "level" : 146,
+    "loggedIn" : true,
+    "name" : "Chiyoung"
+}
+
+/* 3 */
+{
+    "_id" : 4,
+    "experience" : 14746,
+    "hitpoints" : 20210,
+    "level" : 146,
+    "loggedIn" : true,
+    "name" : "Claire"
+}
+
+
